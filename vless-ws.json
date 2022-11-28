@@ -1,0 +1,71 @@
+{
+  "log": {
+      "access": "/var/log/xray/vless.log",
+      "error": "/var/log/xray/error.log",
+      "loglevel": "info"
+  },
+  "inbounds": [
+    {
+      "port": 31297,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "tag": "VLESSWS",
+      "settings": {
+        "clients": [
+          {
+            "id": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
+#xray
+#### NurFiya 2023-08-26
+},{"id": "85217068-57d0-11ed-abe4-f3a11d82ac05","email": "NurFiya"
+#### jdjd5503 2022-12-07
+},{"id": "ef4212a6-566b-11ed-adf3-00163e518ab2","email": "jdjd5503"
+#### jungsari1410 2022-11-07
+},{"id": "3503803a-46e1-11ed-86bf-00163e518ab2","email": "jungsari1410"
+#### samberjo1343 2022-11-07
+},{"id": "256995e2-46e1-11ed-a323-00163e518ab2","email": "samberjo1343"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "acceptProxyProtocol": true,
+          "path": "/vlessws"
+        }
+      }
+    }
+  ],
+    "outbounds": [
+        {
+            "protocol": "freedom"
+        },
+        {
+            "tag": "media-unlock",
+            "protocol": "socks",
+            "settings": {
+                "servers": [
+                    {
+                        "address": "127.0.0.1",
+                        "port": 10808,
+                        "users": []
+                    }
+                ]
+            }
+        }
+    ],
+    "routing": {
+        "domainStrategy": "AsIs",
+        "rules": [
+            {
+                "type": "field",
+                "domain": [
+                    "geosite:netflix",
+                    "domain:ipsaya.com"
+                ],
+                "outboundTag": "media-unlock"
+            }
+        ]
+    }
+}
