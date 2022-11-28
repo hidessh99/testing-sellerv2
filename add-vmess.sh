@@ -50,7 +50,7 @@ sed -i '/#xray$/a\#### '"$user$sec $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user$sec""'"' /etc/xray/vmess-grpc.json
 sleep 5 && systemctl restart vmess-ws &
 sleep 5 && systemctl restart vmess-grpc &
-sleep 5 && systemctl restart vmess-ws-none &
+
 cat>/etc/xray/vmess-${user}ws-tls.json<<EOF
       {
       "v": "2",

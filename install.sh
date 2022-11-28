@@ -284,7 +284,7 @@ sysctl -p
 #install xray
 wget https://github.com/XTLS/Xray-install/raw/main/install-release.sh
 bash install-release.sh install
-#create jaon
+#penting create json
 cat> /etc/xray/trojan-tcp.json << END
 {
   "log": {
@@ -960,8 +960,8 @@ cd
 #menu-vps
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-utama.sh" && chmod +x /usr/bin/menu
 #menu vmess
-#wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-vmess.sh" && chmod +x /usr/bin/menu-vmess
-#wget -q -O /usr/bin/add-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/add-vmess.sh" && chmod +x /usr/bin/add-vmess
+wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-vmess.sh" && chmod +x /usr/bin/menu-vmess
+wget -q -O /usr/bin/add-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/add-vmess.sh" && chmod +x /usr/bin/add-vmess
 #wget -q -O /usr/bin/cek-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-vmess.sh" && chmod +x /usr/bin/cek-vmess
 #wget -q -O /usr/bin/del-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-vmess.sh" && chmod +x /usr/bin/del-vmess
 #wget -q -O /usr/bin/renew-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vmess.sh" && chmod +x /usr/bin/renew-vmess
@@ -984,7 +984,7 @@ wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/hidessh99/testi
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vless.sh" && chmod +x /usr/bin/renew-vless
 
 
-
+#restart service
 systemctl restart trojan-tcp
 systemctl restart trojan-ws
 systemctl restart trojan-grpc
