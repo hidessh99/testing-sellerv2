@@ -905,8 +905,7 @@ cd
 wget -O /etc/xray/xray.crt https://raw.githubusercontent.com/hidessh99/SSL/main/xray.crt
 wget -O /etc/xray/xray.key https://raw.githubusercontent.com/hidessh99/SSL/main/xray.key
 
-
-# menu ssh ovpn
+cd /usr/bin/
 wget -O menu-ssh "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-ssh.sh"
 wget -O usernew "https://raw.githubusercontent.com/bracoli/v4/main/ssh/usernew.sh"
 wget -O trial "https://raw.githubusercontent.com/bracoli/v4/main/ssh/trial.sh"
@@ -919,7 +918,6 @@ wget -O autokill "https://raw.githubusercontent.com/bracoli/v4/main/ssh/autokill
 wget -O ceklim "https://raw.githubusercontent.com/bracoli/v4/main/ssh/ceklim.sh"
 wget -O tendang "https://raw.githubusercontent.com/bracoli/v4/main/ssh/tendang.sh"
 
-# menu system
 wget -O menu-set "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-set.sh"
 wget -O menu-domain "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-domain.sh"
 wget -O add-host "https://raw.githubusercontent.com/bracoli/v4/main/ssh/add-host.sh"
@@ -931,10 +929,35 @@ wget -O about "https://raw.githubusercontent.com/bracoli/v4/main/menu/about.sh"
 wget -O auto-reboot "https://raw.githubusercontent.com/bracoli/v4/main/menu/auto-reboot.sh"
 wget -O restart "https://raw.githubusercontent.com/bracoli/v4/main/menu/restart.sh"
 wget -O bw "https://raw.githubusercontent.com/bracoli/v4/main/menu/bw.sh"
+chmod +x menu-ssh
+chmod +x usernew
+chmod +x trial
+chmod +x renew
+chmod +x hapus
+chmod +x cek
+chmod +x member
+chmod +x delete
+chmod +x autokill
+chmod +x ceklim
+chmod +x tendang
+chmod +x menu-set
+chmod +x menu-domain
+chmod +x add-host
+chmod +x port-change
+chmod +x certv2ray
+chmod +x menu-webmin
+chmod +x speedtest
+chmod +x about
+chmod +x auto-reboot
+chmod +x restart
+chmod +x bw
 
 
+
+
+cd 
 #menu-vps
-wget -q -O /usr/bin/meu-utama "https://raw.githubusercontent.com/bracoli/v4/main/menu/meu-utama.sh" && chmod +x /usr/bin/meu-utama
+wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-utama.sh" && chmod +x /usr/bin/menu
 #menu vmess
 wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-vmess.sh" && chmod +x /usr/bin/menu-vmess
 #package vmess
