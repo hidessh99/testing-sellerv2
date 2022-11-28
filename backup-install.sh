@@ -229,7 +229,7 @@ server {
                 add_header Content-Type text/plain;
                 alias /etc/v2ray-agent/subscribe/;
        }
-        location /hidessh-vless-grpc {
+        location /vless-grpc {
                 client_max_body_size 0;
 #               keepalive_time 1071906480m;
                 keepalive_requests 4294967296;
@@ -322,17 +322,17 @@ cat> /etc/xray/trojan-tcp.json << END
             "xver": 1
           },
           {
-            "path": "/hidessh-vmess-ws",
+            "path": "/vmessws",
             "dest": 31298,
             "xver": 1
           },
           {
-            "path": "/hidessh-vless-ws",
+            "path": "/vlessws",
             "dest": 31297,
             "xver": 1
           },
           {
-            "path": "/hidessh-trojan-ws",
+            "path": "/trojanws",
             "dest": 60002,
             "xver": 1
           }
@@ -394,7 +394,7 @@ cat> /etc/xray/trojan-ws.json << END
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/hidessh-trojan-ws"
+          "path": "/trojanws"
         }
       }
     }
@@ -434,7 +434,7 @@ cat> /etc/xray/vless-ws.json << END
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/hidessh-vless-ws"
+          "path": "/vlessws"
         }
       }
     }
@@ -473,7 +473,7 @@ cat> /etc/xray/vmess-ws.json << END
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/hidessh-vmess-ws"
+          "path": "/vmessws"
         }
       }
     }
@@ -568,17 +568,17 @@ cat> /etc/xray/ntls.json << END
             "xver": 1
           },
           {
-            "path": "/hidessh-vmess-ws",
+            "path": "/vmessws",
             "dest": 31298,
             "xver": 1
           },
           {
-            "path": "/hidessh-vless-ws",
+            "path": "/vlessws",
             "dest": 31297,
             "xver": 1
           },
           {
-            "path": "/hidessh-trojan-ws",
+            "path": "/trojanws",
             "dest": 60002,
             "xver": 1
           }
@@ -624,7 +624,7 @@ cat> /etc/xray/vless-grpc.json << END
         "network": "grpc",
         "security": "none",
         "grpcSettings": {
-          "serviceName": "hidessh-vless-grpc",
+          "serviceName": "vless-grpc",
           "multiMode": true,
           "acceptProxyProtocol": true
         }
@@ -865,7 +865,6 @@ systemctl enable vmess-ws
 systemctl enable vmess-grpc
 systemctl enable ntls
 systemctl enable nginx
-
 systemctl disable xray
 #bin
 bash add-on.sh
@@ -982,15 +981,3 @@ wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/hidessh99/testi
 wget -q -O /usr/bin/cek-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-vless.sh" && chmod +x /usr/bin/cek-vless
 wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-vless.sh" && chmod +x /usr/bin/del-vless
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vless.sh" && chmod +x /usr/bin/renew-vless
-
-
-
-systemctl restart trojan-tcp
-systemctl restart trojan-ws
-systemctl restart trojan-grpc
-systemctl restart vless-ws
-systemctl restart vless-grpc
-systemctl restart vmess-ws
-systemctl restart vmess-grpc
-systemctl restart ntls
-systemctl restart nginx

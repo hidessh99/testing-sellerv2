@@ -58,8 +58,8 @@ sed -i '/#xray$/a\#### '"$user$sec $exp"'\
 sed -i '/#xray$/a\#### '"$user$sec $exp"'\
 },{"password": "'""$uuid""'","email": "'""$user$sec""'"' /etc/xray/trojan-grpc.json
 gfw="trojan://${uuid}@${domain}:443"
-ws="trojan://${uuid}@${domain}:443?path=/trojanws&security=tls&host=${domain}&type=ws&sni=isi-bugmu-ngab#${user}"
-grpc="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=isi-bugmu-ngab#${user}"
+ws="trojan://${uuid}@${domain}:443?path=/hidessh-trojan-ws&security=tls&host=${domain}&type=ws&sni=isi-bugmu-ngab#${user}"
+grpc="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=hidessh-trojan-grpc&sni=isi-bugmu-ngab#${user}"
 sleep 5 && systemctl restart trojan-ws &
 sleep 5 && systemctl restart trojan-tcp &
 sleep 5 && systemctl restart trojan-grpc &
@@ -75,8 +75,8 @@ Created  : $now
 Expired  : $exp
 ======> PLUGIN <=======
 Tcp/Gfw   : Yes
-Websocekt : /trojanws
-gRPC      : trojan-grpc
+Websocekt : /hidessh-trojan-ws
+gRPC      : hidessh-trojan-grpc
 =======================
 Link Trojan Tcp/Gfw TLS
 => $gfw
