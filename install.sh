@@ -240,7 +240,7 @@ server {
                 grpc_send_timeout 1071906480m;
                 grpc_pass grpc://127.0.0.1:31301;
         }
-        location /trojan-grpc {
+        location /hidessh-trojan-grpc {
                 client_max_body_size 0;
 #                # keepalive_time 1071906480m;
                 keepalive_requests 4294967296;
@@ -251,7 +251,7 @@ server {
                 grpc_send_timeout 1071906480m;
                 grpc_pass grpc://127.0.0.1:31304;
         }
-        location /vmess-grpc {
+        location /hidessh-vmess-grpc {
                 client_max_body_size 0;
                 # keepalive_time 1071906480m;
                 keepalive_requests 4294967296;
@@ -516,7 +516,7 @@ cat> /etc/xray/trojan-grpc.json << END
         "network": "grpc",
         "security": "none",
         "grpcSettings": {
-          "serviceName": "trojan-grpc",
+          "serviceName": "hidessh-trojan-grpc",
           "multiMode": true,
           "acceptProxyProtocol": true
         }
@@ -669,7 +669,7 @@ cat> /etc/xray/vmess-grpc.json << END
         "network": "grpc",
         "security": "none",
         "grpcSettings": {
-          "serviceName": "vmess-grpc",
+          "serviceName": "hidessh-vmess-grpc",
           "multiMode": true,
           "acceptProxyProtocol": true
         }
@@ -899,8 +899,42 @@ systemctl stop apache2
 cert
 clear-log
 
-#menu-vps
 
+#pasang SSL
+cd
+wget -O /etc/xray/xray.crt https://raw.githubusercontent.com/hidessh99/SSL/main/xray.crt
+wget -O /etc/xray/xray.key https://raw.githubusercontent.com/hidessh99/SSL/main/xray.key
+
+
+# menu ssh ovpn
+wget -O menu-ssh "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-ssh.sh"
+wget -O usernew "https://raw.githubusercontent.com/bracoli/v4/main/ssh/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/bracoli/v4/main/ssh/trial.sh"
+wget -O renew "https://raw.githubusercontent.com/bracoli/v4/main/ssh/renew.sh"
+wget -O hapus "https://raw.githubusercontent.com/bracoli/v4/main/ssh/hapus.sh"
+wget -O cek "https://raw.githubusercontent.com/bracoli/v4/main/ssh/cek.sh"
+wget -O member "https://raw.githubusercontent.com/bracoli/v4/main/ssh/member.sh"
+wget -O delete "https://raw.githubusercontent.com/bracoli/v4/main/ssh/delete.sh"
+wget -O autokill "https://raw.githubusercontent.com/bracoli/v4/main/ssh/autokill.sh"
+wget -O ceklim "https://raw.githubusercontent.com/bracoli/v4/main/ssh/ceklim.sh"
+wget -O tendang "https://raw.githubusercontent.com/bracoli/v4/main/ssh/tendang.sh"
+
+# menu system
+wget -O menu-set "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-set.sh"
+wget -O menu-domain "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-domain.sh"
+wget -O add-host "https://raw.githubusercontent.com/bracoli/v4/main/ssh/add-host.sh"
+wget -O port-change "https://raw.githubusercontent.com/bracoli/v4/main/port/port-change.sh"
+wget -O certv2ray "https://raw.githubusercontent.com/bracoli/v4/main/xray/certv2ray.sh"
+wget -O menu-webmin "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-webmin.sh"
+wget -O speedtest "https://raw.githubusercontent.com/bracoli/v4/main/ssh/speedtest_cli.py"
+wget -O about "https://raw.githubusercontent.com/bracoli/v4/main/menu/about.sh"
+wget -O auto-reboot "https://raw.githubusercontent.com/bracoli/v4/main/menu/auto-reboot.sh"
+wget -O restart "https://raw.githubusercontent.com/bracoli/v4/main/menu/restart.sh"
+wget -O bw "https://raw.githubusercontent.com/bracoli/v4/main/menu/bw.sh"
+
+
+#menu-vps
+wget -q -O /usr/bin/meu-utama "https://raw.githubusercontent.com/bracoli/v4/main/menu/meu-utama.sh" && chmod +x /usr/bin/meu-utama
 #menu vmess
 wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-vmess.sh" && chmod +x /usr/bin/menu-vmess
 #package vmess

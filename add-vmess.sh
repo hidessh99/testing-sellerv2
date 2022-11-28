@@ -13,16 +13,6 @@ domainku=$(cat /etc/xray/domain)
 uuid=$(uuid)
 #sec=$(date +%M%S)
 MYIP=$(cat /etc/xray/public)
-if [ $MYIP = $IZIN ]; then
-clear
-echo -e "${green}Autentikasi SAH${NC}"
-else
-clear
-echo -e "${red}Permintaan Ditolak!${NC}";
-echo "Hanya untuk pengguna terdaftar"
-echo "silahkan hubungi admin thunder_tun"
-exit
-fi
 clear
 read -p "Silahkan masukan username : " user
 read -p "Silahkan masukan masaaktif : " masaaktif
@@ -87,7 +77,7 @@ cat>/etc/xray/vmess-${user}grpc-tls.json<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "grpc",
-      "path": "vmess-grpc",
+      "path": "hidessh-vmess-grpc",
       "type": "none",
       "host": "$domain",
       "tls": "tls"
@@ -123,7 +113,7 @@ Created  : $now
 Expired  : $exp
 ======> PLUGIN <=======
 Websocekt : /vmessws
-gRPC      : vmess-grpc
+gRPC      : hidessh-vmess-grpc
 =======================
 Link Vmess Websocket TLS
 => $ws
