@@ -13,7 +13,6 @@ domainku=$(cat /etc/xray/domain)
 #sec=$(date +%M%S)
 uuid=$(uuid)
 MYIP=$(cat /etc/xray/public)
-IZIN=$(curl https://raw.githubusercontent.com/nuralfiya/Autorekonek-Libernet/main/izin.sh | grep -o $MYIP | cut -d ' ' -f 2)
 if [ $MYIP = $IZIN ]; then
 clear
 echo -e "${green}Autentikasi SAH${NC}"

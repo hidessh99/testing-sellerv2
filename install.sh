@@ -903,10 +903,25 @@ clear-log
 
 #menu vmess
 wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-vmess.sh" && chmod +x /usr/bin/menu-vmess
-#xray Vmess-ws
+#package vmess
 wget -q -O /usr/bin/add-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/add-vmess.sh" && chmod +x /usr/bin/add-vmess
 wget -q -O /usr/bin/cek-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-vmess.sh" && chmod +x /usr/bin/cek-vmess
 wget -q -O /usr/bin/del-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-vmess.sh" && chmod +x /usr/bin/del-vmess
 wget -q -O /usr/bin/renew-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vmess.sh" && chmod +x /usr/bin/renew-vmess
 
+#menu trojan
 
+wget -q -O /usr/bin/menu-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-trojan.sh" && chmod +x /usr/bin/menu-trojan
+#package trojan
+wget -q -O /usr/bin/add-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/add-trojan.sh" && chmod +x /usr/bin/add-trojan
+wget -q -O /usr/bin/cek-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-trojan.sh" && chmod +x /usr/bin/cek-trojan
+wget -q -O /usr/bin/del-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-trojan.sh" && chmod +x /usr/bin/del-trojan
+wget -q -O /usr/bin/renew-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-trojan.sh" && chmod +x /usr/bin/renew-trojan
+
+#menu vless
+wget -q -O /usr/bin/menu-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-vless.sh" && chmod +x /usr/bin/menu-vless
+#package vless
+wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/add-vless.sh" && chmod +x /usr/bin/add-vless
+wget -q -O /usr/bin/cek-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-vless.sh" && chmod +x /usr/bin/cek-vless
+wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-vless.sh" && chmod +x /usr/bin/del-vless
+wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vless.sh" && chmod +x /usr/bin/renew-vless
