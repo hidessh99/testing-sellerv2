@@ -11,7 +11,7 @@ domain=$(cat /etc/xray/domain)
 else
 domain=$IP
 fi
-tr="$(cat ~/log-install.txt | grep -w "Trojan WS " | cut -d: -f2|sed 's/ //g')"
+tr=443
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 		read -rp "User: " -e user
 		user_EXISTS=$(grep -w $user /etc/xray/trojan-ws.json | wc -l)
@@ -41,7 +41,7 @@ sed -i '/#xray$/a\#### '"$user $exp"'\
 
 gfw="trojan://${uuid}@${domain}:443"
 trojanlink1="trojan://${uuid}@${domain}:${tr}?mode=gun&security=tls&type=grpc&serviceName=hidessh-trojan-grpc&sni=${domain}#${user}"
-trojanlink="trojan://${uuid}@${domain}:${tr}?path=%2Fhidessh-trojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
+trojanlink="trojan://${uuid}@${domain}:${tr}?path=%2Fhidessh-trojanws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
 clear
 
 systemctl restart trojan-ws
@@ -55,8 +55,8 @@ echo -e "Remarks : ${user}" | tee -a /etc/log-create-user.log
 echo -e "Host/IP : ${domain}" | tee -a /etc/log-create-user.log
 echo -e "port : ${tr}" | tee -a /etc/log-create-user.log
 echo -e "Key : ${uuid}" | tee -a /etc/log-create-user.log
-echo -e "Path : /hidessh-trojan-ws" | tee -a /etc/log-create-user.log
-echo -e "ServiceName : trojan-grpc" | tee -a /etc/log-create-user.log
+echo -e "Path : /hidessh-trojanws" | tee -a /etc/log-create-user.log
+echo -e "ServiceName : hidessh-trojan-grpc" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Link WS : ${trojanlink}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
