@@ -38,14 +38,11 @@ uuid=$(cat /proc/sys/kernel/random/uuid)
 masaaktif=999
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#xray$/a\#### '"$user $exp"'\
-},{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/ntls.json
-sed -i '/#xray$/a\#### '"$user $exp"'\
 },{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/vmess-ws.json
 sed -i '/#xray$/a\#### '"$user $exp"'\
 },{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/vmess-grpc.json
 sleep 3 && systemctl restart vmess-ws 
 sleep 3 && systemctl restart vmess-grpc 
-sleep 3 && systemctl restart ntls 
 asu=`cat<<EOF
       {
       "v": "2",
