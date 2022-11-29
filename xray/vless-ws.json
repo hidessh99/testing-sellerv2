@@ -1,28 +1,29 @@
 {
   "log": {
-      "access": "/var/log/xray/vmess.log",
+      "access": "/var/log/xray/vless.log",
       "loglevel": "info"
   },
   "inbounds": [
     {
+      "port": 31297,
       "listen": "127.0.0.1",
-      "port": 31298,
-      "protocol": "vmess",
-      "tag": "VMessWS",
+      "protocol": "vless",
+      "tag": "VLESSWS",
       "settings": {
         "clients": [
           {
             "id": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
 #xray
           }
-        ]
+        ],
+        "decryption": "none"
       },
       "streamSettings": {
         "network": "ws",
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/hidessh-vmessws"
+          "path": "/hidessh-vlessws"
         }
       }
     }

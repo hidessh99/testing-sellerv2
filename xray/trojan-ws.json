@@ -1,19 +1,24 @@
 {
-  "log": {
-      "access": "/var/log/xray/vmess.log",
+   "log": {
+      "access": "/var/log/xray/trojan.log",
       "loglevel": "info"
   },
-  "inbounds": [
+ "inbounds": [
     {
+      "port": 60002,
       "listen": "127.0.0.1",
-      "port": 31298,
-      "protocol": "vmess",
-      "tag": "VMessWS",
+      "protocol": "trojan",
+      "tag": "trojanWS",
       "settings": {
         "clients": [
           {
-            "id": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
+            "password": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
 #xray
+          }
+        ],
+        "fallbacks": [
+          {
+            "dest": "81"
           }
         ]
       },
@@ -22,7 +27,7 @@
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/hidessh-vmessws"
+          "path": "/hidessh-trojanws"
         }
       }
     }

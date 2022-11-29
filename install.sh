@@ -208,6 +208,7 @@ rm /etc/nginx/nginx.conf
 cd /etc/nginx
 wget https://raw.githubusercontent.com/nuralfiya/Autorekonek-Libernet/main/nginx.conf
 cd
+#CONFIG NGINX
 cat> /etc/nginx/conf.d/funnvpn.conf << END
 server {
         listen 81;
@@ -284,216 +285,27 @@ sysctl -p
 #install xray
 wget https://github.com/XTLS/Xray-install/raw/main/install-release.sh
 bash install-release.sh install
-#penting create json
-cat> /etc/xray/trojan-tcp.json << END
-{
-  "log": {
-      "access": "/var/log/xray/trojan.log",
-      "loglevel": "info"
-  },
-  "inbounds": [
-    {
-      "port": 443,
-      "protocol": "trojan",
-      "tag": "TROJANTCP",
-      "settings": {
-        "clients": [
-          {
-            "password": "eef46d87-ae46-d801-e0d4-6c87ae46d801",
-            "flow": "xtls-rprx-direct",
-            "email": "trojan.ket-yt.xyz_VLESS_XTLS/TLS-direct_TCP"
-#xray
-          }
-        ],
-        "decryption": "none",
-        "fallbacks": [
-          {
-            "alpn": "h2",
-            "dest": 31302,
-            "xver": 0
-          },
-          {
-            "path": "/",
-            "dest": 700,
-            "xver": 1
-          },
-          {
-            "dest": 143,
-            "xver": 1
-          },
-          {
-            "path": "/hidessh-vmessws",
-            "dest": 31298,
-            "xver": 1
-          },
-          {
-            "path": "/hidessh-vlessws",
-            "dest": 31297,
-            "xver": 1
-          },
-          {
-            "path": "/hidessh-trojanws",
-            "dest": 60002,
-            "xver": 1
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "xtls",
-        "xtlsSettings": {
-          "minVersion": "1.2",
-          "certificates": [
-            {
-              "certificateFile": "/etc/xray/xray.crt",
-              "keyFile": "/etc/xray/xray.key",
-              "ocspStapling": 3600,
-              "usage": "encipherment"
-            }
-          ]
-        }
-      }
-    }
-  ],
-  "outbounds": [
-      {
-          "protocol": "freedom",
-          "tag": "direct"
-      }
-  ]
-}
-END
-#create trojan-ws
-cat> /etc/xray/trojan-ws.json << END
-{
-   "log": {
-      "access": "/var/log/xray/trojan.log",
-      "loglevel": "info"
-  },
- "inbounds": [
-    {
-      "port": 60002,
-      "listen": "127.0.0.1",
-      "protocol": "trojan",
-      "tag": "trojanWS",
-      "settings": {
-        "clients": [
-          {
-            "password": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
-#xray
-          }
-        ],
-        "fallbacks": [
-          {
-            "dest": "81"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "acceptProxyProtocol": true,
-          "path": "/hidessh-trojanws"
-        }
-      }
-    }
-  ],
-  "outbounds": [
-      {
-          "protocol": "freedom",
-          "tag": "direct"
-      }
-  ]
-}
-END
-#create vless-ws
-cat> /etc/xray/vless-ws.json << END
-{
-  "log": {
-      "access": "/var/log/xray/vless.log",
-      "loglevel": "info"
-  },
-  "inbounds": [
-    {
-      "port": 31297,
-      "listen": "127.0.0.1",
-      "protocol": "vless",
-      "tag": "VLESSWS",
-      "settings": {
-        "clients": [
-          {
-            "id": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
-#xray
-          }
-        ],
-        "decryption": "none"
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "acceptProxyProtocol": true,
-          "path": "/hidessh-vlessws"
-        }
-      }
-    }
-  ],
-  "outbounds": [
-      {
-          "protocol": "freedom",
-          "tag": "direct"
-      }
-  ]
-}
-END
-#create vmess-ws
-cat> /etc/xray/vmess-ws.json << END
-{
-  "log": {
-      "access": "/var/log/xray/vmess.log",
-      "loglevel": "info"
-  },
-  "inbounds": [
-    {
-      "listen": "127.0.0.1",
-      "port": 31298,
-      "protocol": "vmess",
-      "tag": "VMessWS",
-      "settings": {
-        "clients": [
-          {
-            "id": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
-#xray
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "acceptProxyProtocol": true,
-          "path": "/hidessh-vmessws"
-        }
-      }
-    }
-  ],
-  "outbounds": [
-      {
-          "protocol": "freedom",
-          "tag": "direct"
-      }
-  ]
-}
-END
-#create trojan-grpc
-wget -q -O /etc/xray/trojan-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/trojan-grpc.json"
+
+#penting Port 443 CONF SSL/TLS json
+wget -q -O /etc/xray/trojan-tcp.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/trojan-tcp.json"
 #Penting Port 80 CONF ntls
 wget -q -O /etc/xray/ntls.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/ntls.json"
+
+
+#CONF trojan-ws
+wget -q -O /etc/xray/trojan-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/trojan-ws.json"
+#CONF vless-ws
+wget -q -O /etc/xray/vless-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vless-ws.json"
+#CONF vmess-ws
+wget -q -O /etc/xray/vmess-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vmess-ws.json"
+
 #CONF vless-grpc
 wget -q -O /etc/xray/vless-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vless-grpc.json"
 #CONF vmess-grpc
 wget -q -O /etc/xray/vmess-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vmess-grpc.json" 
+#CONF trojan-grpc
+wget -q -O /etc/xray/trojan-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/trojan-grpc.json"
+
 
 
 #seting jam
