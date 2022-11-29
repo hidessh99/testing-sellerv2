@@ -1,7 +1,4 @@
 #!/bin/bash
-#Nur_Alfiyaku
-#em0zz
-#IndoSSH
 data=( `cat /etc/xray/trojan-tcp.json | grep '^####' | cut -d ' ' -f 2`);
 now=`date +"%Y-%m-%d"`
 for user in "${data[@]}"

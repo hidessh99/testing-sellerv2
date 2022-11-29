@@ -588,7 +588,6 @@ wget -q -O /usr/bin/del-vmess "https://raw.githubusercontent.com/hidessh99/testi
 wget -q -O /usr/bin/renew-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vmess.sh" && chmod +x /usr/bin/renew-vmess
 
 #menu trojan
-
 wget -q -O /usr/bin/menu-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-trojan.sh" && chmod +x /usr/bin/menu-trojan
 wget -q -O /usr/bin/add-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/add-trojan.sh" && chmod +x /usr/bin/add-trojan
 wget -q -O /usr/bin/cek-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-trojan.sh" && chmod +x /usr/bin/cek-trojan
@@ -602,18 +601,40 @@ wget -q -O /usr/bin/cek-vless "https://raw.githubusercontent.com/hidessh99/testi
 wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-vless.sh" && chmod +x /usr/bin/del-vless
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vless.sh" && chmod +x /usr/bin/renew-vless
 
-#homepage
-wget -q -O /usr/share/nginx/html/index.html "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/index.html" 
+#auto deleted account XRAY expired
+wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xp.sh" && chmod +x /usr/bin/xp.sh
 
+#auto deleted Account SSH Expired
+wget -q -O /usr/bin/del-expired "https://gitlab.com/hidessh/baru/-/raw/main/userdelexpired.sh" && chmod +x /usr/bin/del-expired
+
+#system auto reboot
+
+cat > /etc/cron.d/re_otm <<-END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0 2 * * * root /sbin/reboot
+END
+
+cat > /etc/cron.d/xp_otm <<-END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0 0 * * * root /usr/bin/xp
+END
+
+cd
+echo "50 * * * * root userdelexpired" >> /etc/crontab
+
+#landing homepage
+wget -q -O /usr/share/nginx/html/index.html "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/index.html" 
 
 #SSH Webcoket
 
-#nginx 69 to 443
+#nginx 69 to 700 
 wget -O /usr/local/bin/ws-nginx https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/ssh%20websocket/ws-nginx.sh && chmod +x /usr/local/bin/ws-nginx-tls
 wget -O /etc/systemd/system/ws-nginx.service https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/ssh%20websocket/ws-nginx.service && chmod +x  /etc/systemd/system/ws-nginx.service
-
 systemctl daemon-reload
 systemctl enable ws-nginx
+systemctl start ws-nginx
 systemctl restart ws-nginx
 
 # OpenSSH Websocket
@@ -621,7 +642,6 @@ systemctl restart ws-nginx
 cd
 wget -O /usr/local/bin/ws-openssh https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/ssh%20websocket/ws-openssh.sh && chmod +x /usr/local/bin/ws-openssh
 wget -O /etc/systemd/system/ws-openssh.service https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/ssh%20websocket/ws-openssh.service && chmod +x /etc/systemd/system/ws-openssh.service
-
 systemctl daemon-reload
 systemctl enable ws-openssh.service
 systemctl start ws-openssh.service
@@ -648,9 +668,6 @@ chmod +x /etc/issue.net
 echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
 echo "DROPBEAR_BANNER="/etc/issue.net"" >> /etc/default/dropbear
 
-
-
-
 #restart service
 systemctl restart trojan-tcp
 systemctl restart trojan-ws
@@ -661,6 +678,3 @@ systemctl restart vmess-ws
 systemctl restart vmess-grpc
 systemctl restart ntls
 systemctl restart nginx
-
-
-
