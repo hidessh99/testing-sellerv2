@@ -60,7 +60,7 @@ cat>/etc/xray/vmess-${user}ws-tls.json<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "/hidessh-vmess-ws",
+      "path": "/hidessh-vmessws",
       "type": "none",
       "host": "$domain",
       "tls": "tls"
@@ -94,7 +94,7 @@ cat>/etc/xray/vmess-$user-none.json<<EOF
       "id": "${uuid}",
       "aid": "0",
       "net": "ws",
-      "path": "/hidessh-vmess-ws",
+      "path": "/hidessh-vmessws",
       "type": "none",
       "host": "$domain",
       "tls": "none"
@@ -112,7 +112,7 @@ Port     : 443
 Created  : $now
 Expired  : $exp
 ======> PLUGIN <=======
-Websocekt : /hidessh-vmess-ws
+Websocekt : /hidessh-vmessws
 gRPC      : hidessh-vmess-grpc
 =======================
 Link Vmess Websocket TLS

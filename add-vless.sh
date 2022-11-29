@@ -57,9 +57,9 @@ sed -i '/#xray$/a\#### '"$user$sec $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user$sec""'"' /etc/xray/vless-ws.json
 sed -i '/#xray$/a\#### '"$user$sec $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user$sec""'"' /etc/xray/vless-grpc.json
-ws="vless://${uuid}@${domain}:443?path=%2Fhidessh-vless-ws&security=tls&encryption=none&type=ws#${user}"
+ws="vless://${uuid}@${domain}:443?path=%2Fhidessh-vlessws&security=tls&encryption=none&type=ws#${user}"
 grpc="vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=hidessh-vless-grpc&sni=${domain}#${user}"
-ws-none="vless://${uuid}@${domain}:80?path=%2Fhidessh-vless-ws&security=none&encryption=none&host=$domain&type=ws#$user"
+ws-none="vless://${uuid}@${domain}:80?path=%2Fhidessh-vlessws&security=none&encryption=none&host=$domain&type=ws#$user"
 sleep 5 && systemctl restart vless-ws &
 sleep 5 && systemctl restart vless-grpc &
 cat> /usr/share/nginx/html/$user$sec.conf << END
@@ -73,7 +73,7 @@ Port NTLS: 80
 Created  : $now
 Expired  : $exp
 ======> PLUGIN <=======
-Websocekt : /hidessh-vless-ws
+Websocekt : /hidessh-vlessws
 gRPC      : hidessh-vless-grpc
 =======================
 Link Vless Websocket TLS

@@ -322,17 +322,17 @@ cat> /etc/xray/trojan-tcp.json << END
             "xver": 1
           },
           {
-            "path": "/hidessh-vmess-ws",
+            "path": "/hidessh-vmessws",
             "dest": 31298,
             "xver": 1
           },
           {
-            "path": "/hidessh-vless-ws",
+            "path": "/hidessh-vlessws",
             "dest": 31297,
             "xver": 1
           },
           {
-            "path": "/hidessh-trojan-ws",
+            "path": "/hidessh-trojanws",
             "dest": 60002,
             "xver": 1
           }
@@ -394,7 +394,7 @@ cat> /etc/xray/trojan-ws.json << END
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/hidessh-trojan-ws"
+          "path": "/hidessh-trojanws"
         }
       }
     }
@@ -434,7 +434,7 @@ cat> /etc/xray/vless-ws.json << END
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/hidessh-vless-ws"
+          "path": "/hidessh-vlessws"
         }
       }
     }
@@ -473,7 +473,7 @@ cat> /etc/xray/vmess-ws.json << END
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/hidessh-vmess-ws"
+          "path": "/hidessh-vmessws"
         }
       }
     }
@@ -568,17 +568,17 @@ cat> /etc/xray/ntls.json << END
             "xver": 1
           },
           {
-            "path": "/hidessh-vmess-ws",
+            "path": "/hidessh-vmessws",
             "dest": 31298,
             "xver": 1
           },
           {
-            "path": "/hidessh-vless-ws",
+            "path": "/hidessh-vlessws",
             "dest": 31297,
             "xver": 1
           },
           {
-            "path": "/hidessh-trojan-ws",
+            "path": "/hidessh-trojanws",
             "dest": 60002,
             "xver": 1
           }
@@ -962,9 +962,9 @@ wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hidessh99/testing-se
 #menu vmess
 wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-vmess.sh" && chmod +x /usr/bin/menu-vmess
 wget -q -O /usr/bin/add-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/add-vmess.sh" && chmod +x /usr/bin/add-vmess
-#wget -q -O /usr/bin/cek-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-vmess.sh" && chmod +x /usr/bin/cek-vmess
-#wget -q -O /usr/bin/del-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-vmess.sh" && chmod +x /usr/bin/del-vmess
-#wget -q -O /usr/bin/renew-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vmess.sh" && chmod +x /usr/bin/renew-vmess
+wget -q -O /usr/bin/cek-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-vmess.sh" && chmod +x /usr/bin/cek-vmess
+wget -q -O /usr/bin/del-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-vmess.sh" && chmod +x /usr/bin/del-vmess
+wget -q -O /usr/bin/renew-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vmess.sh" && chmod +x /usr/bin/renew-vmess
 
 #menu trojan
 
