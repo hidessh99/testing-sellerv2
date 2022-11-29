@@ -172,12 +172,7 @@ END
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
-cat> /etc/issue.net <<END
-<br>
-<font color="blue"><b>===============================</br></font><br>
-<font color="red"><b>********  Funny VPN  ********</b></font><br>
-<font color="blue"><b>===============================</br></font><br>
-END
+
 #ws-stunnel
 cp ws-stunnel /usr/local/bin/ws-stunnel
 # install badvpn
