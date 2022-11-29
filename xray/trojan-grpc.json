@@ -1,0 +1,42 @@
+{
+   "log": {
+      "access": "/var/log/xray/trojan.log",
+      "loglevel": "info"
+  },
+ "inbounds": [
+    {
+      "port": 31304,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "tag": "trojanGRPC",
+      "settings": {
+        "clients": [
+          {
+            "password": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
+#xray
+          }
+        ],
+        "fallbacks": [
+          {
+            "dest": "81"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "none",
+        "grpcSettings": {
+          "serviceName": "hidessh-trojan-grpc",
+          "multiMode": true,
+          "acceptProxyProtocol": true
+        }
+      }
+    }
+  ],
+  "outbounds": [
+      {
+          "protocol": "freedom",
+          "tag": "direct"
+      }
+  ]
+}

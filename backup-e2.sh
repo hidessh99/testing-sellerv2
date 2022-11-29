@@ -487,14 +487,205 @@ cat> /etc/xray/vmess-ws.json << END
 }
 END
 #create trojan-grpc
-wget -q -O /etc/xray/trojan-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/trojan-grpc.json"
-#Penting Port 80 CONF ntls
-wget -q -O /etc/xray/ntls.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/ntls.json"
-#CONF vless-grpc
-wget -q -O /etc/xray/vless-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vless-grpc.json"
-#CONF vmess-grpc
+cat> /etc/xray/trojan-grpc.json << END
+{
+   "log": {
+      "access": "/var/log/xray/trojan.log",
+      "loglevel": "info"
+  },
+ "inbounds": [
+    {
+      "port": 31304,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "tag": "trojanGRPC",
+      "settings": {
+        "clients": [
+          {
+            "password": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
+#xray
+          }
+        ],
+        "fallbacks": [
+          {
+            "dest": "81"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "none",
+        "grpcSettings": {
+          "serviceName": "hidessh-trojan-grpc",
+          "multiMode": true,
+          "acceptProxyProtocol": true
+        }
+      }
+    }
+  ],
+  "outbounds": [
+      {
+          "protocol": "freedom",
+          "tag": "direct"
+      }
+  ]
+}
+END
+#create ntls
+cat> /etc/xray/ntls.json << END
+{
+  "log": {
+      "access": "/var/log/xray/trojan.log",
+      "loglevel": "info"
+  },
+  "inbounds": [
+    {
+      "port": 80,
+      "protocol": "trojan",
+      "tag": "TROJANTCP",
+      "settings": {
+        "clients": [
+          {
+            "password": "eef46d87-ae46-d801-e0d4-6c87ae46d801",
+            "flow": "xtls-rprx-direct",
+            "email": "trojan.ket-yt.xyz_VLESS_XTLS/TLS-direct_TCP"
+          }
+        ],
+        "decryption": "none",
+        "fallbacks": [
+          {
+            "alpn": "h2",
+            "dest": 31302,
+            "xver": 0
+          },
+          {
+            "path": "/",
+            "dest": 700,
+            "xver": 1
+          },
+          {
+            "dest": 143,
+            "xver": 1
+          },
+          {
+            "path": "/hidessh-vmessws",
+            "dest": 31298,
+            "xver": 1
+          },
+          {
+            "path": "/hidessh-vlessws",
+            "dest": 31297,
+            "xver": 1
+          },
+          {
+            "path": "/hidessh-trojanws",
+            "dest": 60002,
+            "xver": 1
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none"
+      }
+    }
+  ],
+  "outbounds": [
+      {
+          "protocol": "freedom",
+          "tag": "direct"
+      }
+  ]
+}
+END
+#create vless-grpc
+cat> /etc/xray/vless-grpc.json << END
+{
+   "log": {
+      "access": "/var/log/xray/vless.log",
+      "loglevel": "info"
+  },
+ "inbounds": [
+    {
+      "port": 31301,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "tag": "vlessGRPC",
+      "settings": {
+        "clients": [
+          {
+            "id": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
+#xray
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "none",
+        "grpcSettings": {
+          "serviceName": "hidessh-vless-grpc",
+          "multiMode": true,
+          "acceptProxyProtocol": true
+        }
+      }
+    }
+  ],
+  "outbounds": [
+      {
+          "protocol": "freedom",
+          "tag": "direct"
+      }
+  ]
+}
+END
+#create vmess-grpc
 wget -q -O /etc/xray/vmess-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vmess-grpc.json" 
-
+cat> /etc/xray/vmess-grpc.json << END
+{
+   "log": {
+      "access": "/var/log/xray/vmess.log",
+      "loglevel": "info"
+  },
+ "inbounds": [
+    {
+      "port": 31303,
+      "listen": "127.0.0.1",
+      "protocol": "vmess",
+      "tag": "vmessGRPC",
+      "settings": {
+        "clients": [
+          {
+            "id": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
+#xray
+          }
+        ],
+        "fallbacks": [
+          {
+            "dest": "81"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "none",
+        "grpcSettings": {
+          "serviceName": "hidessh-vmess-grpc",
+          "multiMode": true,
+          "acceptProxyProtocol": true
+        }
+      }
+    }
+  ],
+  "outbounds": [
+      {
+          "protocol": "freedom",
+          "tag": "direct"
+      }
+  ]
+}
+END
+#json trojan ws none tls
 
 #seting jam
 mv /etc/localtime /etc/localtime.bak
