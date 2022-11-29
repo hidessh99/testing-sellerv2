@@ -5,7 +5,7 @@ biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 MYIP=$(curl -sS ipv4.icanhazip.com)
 
 clear
-source /var/lib/scrz-prem/ipvps.conf
+#source /var/lib/scrz-prem/ipvps.conf
 if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
 else
