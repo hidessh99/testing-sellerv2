@@ -602,7 +602,7 @@ wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/hidessh99/testi
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vless.sh" && chmod +x /usr/bin/renew-vless
 
 #auto deleted account XRAY expired
-wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xp.sh" && chmod +x /usr/bin/xp.sh
+wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xp.sh" && chmod +x /usr/bin/xp
 
 #auto deleted Account SSH Expired
 wget -q -O /usr/bin/del-expired "https://gitlab.com/hidessh/baru/-/raw/main/userdelexpired.sh" && chmod +x /usr/bin/del-expired
@@ -623,7 +623,7 @@ END
 
 cd
 echo "50 * * * * root userdelexpired" >> /etc/crontab
-
+echo "0 */12 * * * root xp" >> /etc/crontab
 #landing homepage
 wget -q -O /usr/share/nginx/html/index.html "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/index.html" 
 
