@@ -1,6 +1,6 @@
 {
    "log": {
-      "access": "/var/log/xray/trojan.log",
+      "access": "/var/log/xray/ss.log",
       "loglevel": "info"
   },
  "inbounds": [
