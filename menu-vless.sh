@@ -3,7 +3,6 @@ red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
 MYIP=$(cat /etc/xray/public)
-IZIN=$(curl https://raw.githubusercontent.com/nuralfiya/Autorekonek-Libernet/main/izin.sh | grep -o $MYIP | cut -d ' ' -f 2)
 if [ $MYIP = $IZIN ]; then
         clear
         echo -e "${green}Autentikasi SAH${NC}"
