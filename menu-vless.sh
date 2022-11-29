@@ -3,16 +3,6 @@ red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
 MYIP=$(cat /etc/xray/public)
-if [ $MYIP = $IZIN ]; then
-        clear
-        echo -e "${green}Autentikasi SAH${NC}"
-else
-        clear
-        echo -e "${red}Permintaan Ditolak!${NC}";
-        echo "Hanya untuk pengguna terdaftar"
-        echo "silahkan hubungi admin thunder_tun"
-        exit
-fi
 clear
 echo -e "\e[32m════════════════════════════════════════" | lolcat
 echo -e "             ═══[Vless]═══"
