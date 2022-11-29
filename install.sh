@@ -601,6 +601,7 @@ wget -q -O /usr/bin/cek-vless "https://raw.githubusercontent.com/hidessh99/testi
 wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-vless.sh" && chmod +x /usr/bin/del-vless
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vless.sh" && chmod +x /usr/bin/renew-vless
 
+wget -q -O /usr/share/nginx/html "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/index.html" 
 
 #restart service
 systemctl restart trojan-tcp
