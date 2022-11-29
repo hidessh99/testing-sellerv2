@@ -59,10 +59,19 @@ wget -O sl-fix "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/sslh
 chmod +x sl-fix
 sl-fix
 cd
+#setting SSH
 sed -i 's/#AllowTcpForwarding yes/AllowTcpForwarding yes/g' /etc/ssh/sshd_config
 sed -i 's/Port 22/#Port 22/g' /etc/ssh/sshd_config
 echo "Port 2222" >> /etc/ssh/sshd_config
 echo "Port 22" >> /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 500' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 40000' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 51443' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 58080' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 200' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 22' /etc/ssh/sshd_config
+/etc/init.d/ssh restart
+
 rm -rf /etc/slowdns
 mkdir -m 777 /etc/slowdns
 wget -q -O /etc/slowdns/server.key "https://raw.githubusercontent.com/fisabiliyusri/SLDNS/main/slowdns/server.key"
@@ -577,7 +586,6 @@ chmod +x bw
 cd
 #menu-vps
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-utama.sh" && chmod +x /usr/bin/menu
-#menu vmess
 wget -q -O /usr/bin/menu-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-vmess.sh" && chmod +x /usr/bin/menu-vmess
 wget -q -O /usr/bin/add-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/add-vmess.sh" && chmod +x /usr/bin/add-vmess
 wget -q -O /usr/bin/cek-vmess "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-vmess.sh" && chmod +x /usr/bin/cek-vmess
@@ -587,7 +595,6 @@ wget -q -O /usr/bin/renew-vmess "https://raw.githubusercontent.com/hidessh99/tes
 #menu trojan
 
 wget -q -O /usr/bin/menu-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-trojan.sh" && chmod +x /usr/bin/menu-trojan
-#package trojan
 wget -q -O /usr/bin/add-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/add-trojan.sh" && chmod +x /usr/bin/add-trojan
 wget -q -O /usr/bin/cek-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-trojan.sh" && chmod +x /usr/bin/cek-trojan
 wget -q -O /usr/bin/del-trojan "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-trojan.sh" && chmod +x /usr/bin/del-trojan
@@ -595,13 +602,59 @@ wget -q -O /usr/bin/renew-trojan "https://raw.githubusercontent.com/hidessh99/te
 
 #menu vless
 wget -q -O /usr/bin/menu-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-vless.sh" && chmod +x /usr/bin/menu-vless
-#package vless
 wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/add-vless.sh" && chmod +x /usr/bin/add-vless
 wget -q -O /usr/bin/cek-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-vless.sh" && chmod +x /usr/bin/cek-vless
 wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-vless.sh" && chmod +x /usr/bin/del-vless
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vless.sh" && chmod +x /usr/bin/renew-vless
 
-wget -q -O /usr/share/nginx/html "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/index.html" 
+#homepage
+wget -q -O /usr/share/nginx/html/index.html "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/index.html" 
+
+
+#SSH Webcoket
+
+#nginx 69 to 443
+wget -O /usr/local/bin/ws-nginx https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/ssh%20websocket/ws-nginx.sh && chmod +x /usr/local/bin/ws-nginx-tls
+wget -O /etc/systemd/system/ws-nginx.service https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/ssh%20websocket/ws-nginx.service && chmod +x  /etc/systemd/system/ws-nginx.service
+
+systemctl daemon-reload
+systemctl enable ws-nginx
+systemctl restart ws-nginx
+
+# OpenSSH Websocket
+#port 200 (OpenSSH) to 2082 (HTTP Websocket)
+cd
+wget -O /usr/local/bin/ws-openssh https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/ssh%20websocket/ws-openssh.sh && chmod +x /usr/local/bin/ws-openssh
+wget -O /etc/systemd/system/ws-openssh.service https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/ssh%20websocket/ws-openssh.service && chmod +x /etc/systemd/system/ws-openssh.service
+
+systemctl daemon-reload
+systemctl enable ws-openssh.service
+systemctl start ws-openssh.service
+systemctl restart ws-openssh.service
+
+# Dropbear WebSocket
+#port 109 ( Dropbear) to 8880 (HTTPS Websocket)
+cd
+wget -O /usr/local/bin/ws-dropbear https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/ssh%20websocket/ws-dropbear.sh && chmod +x /usr/local/bin/ws-dropbear
+wget -O /etc/systemd/system/ws-dropbear.service https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/ssh%20websocket/ws-dropbear.service && chmod +x /etc/systemd/system/ws-dropbear.service
+#reboot service
+systemctl daemon-reload
+systemctl enable ws-dropbear.service
+systemctl start ws-dropbear.service
+systemctl restart ws-dropbear.service
+clear
+
+#banner
+cd
+echo "================  Banner ======================"
+wget -O /etc/issue.net "https://gitlab.com/hidessh/baru/-/raw/main/banner.conf"
+chmod +x /etc/issue.net
+
+echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
+echo "DROPBEAR_BANNER="/etc/issue.net"" >> /etc/default/dropbear
+
+
+
 
 #restart service
 systemctl restart trojan-tcp
@@ -613,3 +666,6 @@ systemctl restart vmess-ws
 systemctl restart vmess-grpc
 systemctl restart ntls
 systemctl restart nginx
+
+
+
