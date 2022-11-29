@@ -13,15 +13,6 @@ domainku=$(cat /etc/xray/domain)
 #sec=$(date +%M%S)
 uuid=$(uuid)
 MYIP=$(cat /etc/xray/public)
-if [ $MYIP = $IZIN ]; then
-clear
-echo -e "${green}Autentikasi SAH${NC}"
-else
-clear
-echo -e "${red}Permintaan Ditolak!${NC}";
-echo "Hanya untuk pengguna terdaftar"
-exit
-fi
 clear
 read -p "Silahkan masukan username : " user
 read -p "Silahkan masukan masaaktif : " masaaktif
