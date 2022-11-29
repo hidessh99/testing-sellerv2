@@ -574,11 +574,7 @@ chmod +x about
 chmod +x auto-reboot
 chmod +x restart
 chmod +x bw
-
-
-
-
-cd 
+cd
 #menu-vps
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-utama.sh" && chmod +x /usr/bin/menu
 #menu vmess
