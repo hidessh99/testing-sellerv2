@@ -261,7 +261,8 @@ wget -q -O /etc/xray/vless-grpc.json "https://raw.githubusercontent.com/hidessh9
 wget -q -O /etc/xray/vmess-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vmess-grpc.json" 
 #CONF trojan-grpc
 wget -q -O /etc/xray/trojan-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/trojan-grpc.json"
-
+#CONF ss-grpc
+wget -q -O /etc/xray/ss-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/ss-gprc.json"
 
 
 #seting jam
