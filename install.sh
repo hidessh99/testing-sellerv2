@@ -1,7 +1,7 @@
 #!/bin/bash
 read -p "Silahkan Masukan domain member anda : " domain
 read -p "Silahkan Masukan NSdomain slowdns : " nsdomain
-read -p "Silahkan Masukan Lapak anda : " author
+#read -p "Silahkan Masukan Lapak anda : " author
 #update paket
 apt update -y
 apt upgrade -y
@@ -30,7 +30,7 @@ echo $domain >> /etc/xray/domain
 echo $nsdomain >> /etc/xray/nsdomain
 echo $ipku >> /etc/xray/public
 echo $resdomain >> /etc/xray/resdomain
-echo $author >> /etc/nur/author
+#echo $author >> /etc/nur/author
 #SLOWDNS
 apt update -y
 apt install -y python3 python3-dnslib net-tools
@@ -205,6 +205,17 @@ server {
                 grpc_send_timeout 1071906480m;
                 grpc_pass grpc://127.0.0.1:31303;
         }
+                location /hidessh-ss-grpc {
+                client_max_body_size 0;
+#                # keepalive_time 1071906480m;
+                keepalive_requests 4294967296;
+                client_body_timeout 1071906480m;
+                send_timeout 1071906480m;
+                lingering_close always;
+                grpc_read_timeout 1071906480m;
+                grpc_send_timeout 1071906480m;
+                grpc_pass grpc://127.0.0.1:31380;
+        }
 }
 server {
         listen 127.0.0.1:31300;
@@ -239,7 +250,10 @@ wget -q -O /etc/xray/trojan-ws.json "https://raw.githubusercontent.com/hidessh99
 #CONF vless-ws
 wget -q -O /etc/xray/vless-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vless-ws.json"
 #CONF vmess-ws
-wget -q -O /etc/xray/vmess-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vmess-ws.json"
+wget -q -O /etc/gxray/vmess-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vmess-ws.json"
+#CONF ss-ws
+wget -q -O /etc/xray/ss-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/ss-ws.json"
+
 
 #CONF vless-grpc
 wget -q -O /etc/xray/vless-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vless-grpc.json"
