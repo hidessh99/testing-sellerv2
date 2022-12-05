@@ -18,13 +18,17 @@
           }
         ],
         "network": "tcp,udp",
-        "decryption": "none"
+        "fallbacks": [
+          {
+            "dest": "81"
+          }
+        ]
       },
       "streamSettings": {
         "network": "grpc",
         "security": "none",
         "grpcSettings": {
-          "serviceName": "hidessh-vless-grpc",
+          "serviceName": "hidessh-ss-grpc",
           "multiMode": true,
           "acceptProxyProtocol": true
         }
