@@ -597,7 +597,8 @@ wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/hidessh99/testi
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vless.sh" && chmod +x /usr/bin/renew-vless
 
 #menu shadowsocks
-
+wget -q -O /usr/bin/menu-ss "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-ss.sh" && chmod +x /usr/bin/menu-ss
+wget -q -O /usr/bin/add-ss "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/add-ss.sh" && chmod +x /usr/bin/add-ss
 
 
 #auto deleted account XRAY expired
