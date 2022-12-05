@@ -10,7 +10,7 @@ NC='\e[0m'
 green() { echo -e "\\033[32;1m${*}\\033[0m"; }
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 
-#source /var/lib/scrz-prem/ipvps.conf
+source /var/lib/scrz-prem/ipvps.conf
 if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/xray/domain)
 else
@@ -41,8 +41,6 @@ sed -i '/#xray$/a\#### '"$user $exp"'\
 },{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/vmess-ws.json
 sed -i '/#xray$/a\#### '"$user $exp"'\
 },{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/vmess-grpc.json
-sleep 3 && systemctl restart vmess-ws 
-sleep 3 && systemctl restart vmess-grpc 
 asu=`cat<<EOF
       {
       "v": "2",
@@ -88,9 +86,6 @@ grpc=`cat<<EOF
       "tls": "tls"
 }
 EOF`
-
-
-
 vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 vmess_base642=$( base64 -w 0 <<< $vmess_json2)
 vmess_base643=$( base64 -w 0 <<< $vmess_json3)
@@ -122,5 +117,3 @@ echo -e "━━━━━━━━━━━━━━━━━━━━━━━�
 echo -e "Link GRPC : ${vmesslink3}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo "" | tee -a /etc/log-create-user.log
-rm /etc/xray/$user-tls.json > /dev/null 2>&1
-rm /etc/xray/$user-none.json > /dev/null 2>&1
