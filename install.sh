@@ -1,6 +1,6 @@
 #!/bin/bash
-read -p "Silahkan Masukan domain member anda : " domain
-read -p "Silahkan Masukan NSdomain slowdns : " nsdomain
+#read -p "Silahkan Masukan domain member anda : " domain
+#read -p "Silahkan Masukan NSdomain slowdns : " nsdomain
 #read -p "Silahkan Masukan Lapak anda : " author
 #update paket
 apt update -y
@@ -25,11 +25,29 @@ netfilter-persistent reload
 #mkdir folder
 mkdir /etc/xray
 mkdir /etc/nur
+mkdir -p /etc/v2ray
+mkdir /var/lib/scrz-prem/
+touch /etc/xray/domain
+touch /etc/v2ray/domain
+touch /etc/xray/scdomain
+touch /etc/v2ray/scdomain
+touch /var/lib/scrz-prem/ipvps.conf
+
+wget -q https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/add-dns.sh;chmod +x add-dns.sh;./add-dns.sh
+
 #send
+domain=$(cat /root/subdomain)
+nsdomain=$(cat /root/nsdomain)
 echo $domain >> /etc/xray/domain
-echo $nsdomain >> /etc/xray/nsdomain
+echo $domain >> /etc/v2ray/domain
 echo $ipku >> /etc/xray/public
-echo $resdomain >> /etc/xray/resdomain
+
+#echo $nsdomain >> /etc/xray/nsdomain
+#echo $resdomain >> /etc/xray/resdomain
+#echo $author >> /etc/nur/author
+#send
+
+#echo $resdomain >> /etc/xray/resdomain
 #echo $author >> /etc/nur/author
 #SLOWDNS
 apt update -y
@@ -119,9 +137,6 @@ wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/fisabiliyusri/M
 chmod +x /usr/bin/badvpn-udpgw
 sed -i '$ i\sleep 30' /etc/rc.local
 sed -i '$ i\screen -dmS stunnel python /usr/local/bin/ws-stunnel' /etc/rc.local
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
 cp addssh.sh /usr/bin/addssh
 cp delssh.sh /usr/bin/delssh
 cp cekssh.sh /usr/bin/cekssh
@@ -269,7 +284,8 @@ wget -q -O /etc/xray/ss-grpc.json "https://raw.githubusercontent.com/hidessh99/t
 mv /etc/localtime /etc/localtime.bak
 ln -s /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 #create service systemd
-#trojan-tcp
+
+#service trojan tcp
 cat> /etc/systemd/system/trojan-tcp.service << END
 [Unit]
 Description=Xray Service
@@ -290,7 +306,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
-#ntls
+#service ntls
 cat> /etc/systemd/system/ntls.service << END
 [Unit]
 Description=Xray Service
@@ -311,7 +327,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
-#trojan-ws
+#service trojan-ws
 cat> /etc/systemd/system/trojan-ws.service << END
 [Unit]
 Description=Xray Service
@@ -332,7 +348,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
-#trojan-grpc
+#service trojan-grpc
 cat> /etc/systemd/system/trojan-grpc.service << END
 [Unit]
 Description=Xray Service
@@ -353,7 +369,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
-#vless-ws
+#service vless-ws
 cat> /etc/systemd/system/vless-ws.service << END
 [Unit]
 Description=Xray Service
@@ -374,6 +390,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+#service vless-gprc
 cat> /etc/systemd/system/vless-grpc.service << END
 [Unit]
 Description=Xray Service
@@ -394,6 +411,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+#service vmess-ws
 cat> /etc/systemd/system/vmess-ws.service << END
 [Unit]
 Description=Xray Service
@@ -414,6 +432,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+#service vmess-gprc
 cat> /etc/systemd/system/vmess-grpc.service << END
 [Unit]
 Description=Xray Service
@@ -434,6 +453,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+#service ss-ws
 cat> /etc/systemd/system/ss-ws.service << END
 [Unit]
 Description=Xray Service
@@ -454,6 +474,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+#service ss-gprc
 cat> /etc/systemd/system/ss-grpc.service << END
 [Unit]
 Description=Xray Service
