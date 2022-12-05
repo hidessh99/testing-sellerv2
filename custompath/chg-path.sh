@@ -11,3 +11,5 @@ sed -i $PATH2 /etc/xray/vmess-ws.json
 
 #add user Vmess
 wget -O /usr/local/bin/add-vmess-user "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/custompath/add-vmess5.sh"
+
+rm -rf /root/path.txt
