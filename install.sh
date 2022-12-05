@@ -38,7 +38,7 @@ wget -q https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/add-
 #send
 domain=$(cat /root/subdomain)
 nsdomain=$(cat /root/nsdomain)
-echo $domain >> /etc/xray/domain
+#echo $domain >> /etc/xray/domain
 echo $domain >> /etc/v2ray/domain
 echo $ipku >> /etc/xray/public
 
@@ -265,7 +265,7 @@ wget -q -O /etc/xray/trojan-ws.json "https://raw.githubusercontent.com/hidessh99
 #CONF vless-ws
 wget -q -O /etc/xray/vless-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vless-ws.json"
 #CONF vmess-ws
-wget -q -O /etc/gxray/vmess-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vmess-ws.json"
+wget -q -O /etc/xray/vmess-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vmess-ws.json"
 #CONF ss-ws
 wget -q -O /etc/xray/ss-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/ss-ws.json"
 
@@ -700,3 +700,6 @@ systemctl restart vmess-ws
 systemctl restart vmess-grpc
 systemctl restart ntls
 systemctl restart nginx
+systemctl restart ss-ws
+syatemctl restart ss-gprc
+

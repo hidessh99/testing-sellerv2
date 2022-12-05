@@ -1,7 +1,7 @@
 #!/bin/bash
-read -p "Silahkan Masukan domain member anda : " domain
-read -p "Silahkan Masukan NSdomain slowdns : " nsdomain
-read -p "Silahkan Masukan Lapak anda : " author
+#read -p "Silahkan Masukan domain member anda : " domain
+#read -p "Silahkan Masukan NSdomain slowdns : " nsdomain
+#read -p "Silahkan Masukan Lapak anda : " author
 #update paket
 apt update -y
 apt upgrade -y
@@ -25,12 +25,27 @@ netfilter-persistent reload
 #mkdir folder
 mkdir /etc/xray
 mkdir /etc/nur
+mkdir /etc/v2ray
+mkdir /var/lib/scrz-prem/
+touch /etc/xray/domain
+touch /etc/v2ray/domain
+touch /etc/xray/scdomain
+touch /etc/v2ray/scdomain
+touch /var/lib/scrz-prem/ipvps.conf
+
+wget -q https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/add-dns.sh;chmod +x add-dns.sh;./add-dns.sh
+
 #send
-echo $domain >> /etc/xray/domain
+domain=$(cat /root/subdomain)
+nsdomain=$(cat /root/nsdomain)
+#echo $domain >> /etc/xray/domain
+echo $ipku >> /etc/xray/public
+#send
+
 echo $nsdomain >> /etc/xray/nsdomain
 echo $ipku >> /etc/xray/public
-echo $resdomain >> /etc/xray/resdomain
-echo $author >> /etc/nur/author
+#echo $resdomain >> /etc/xray/resdomain
+#echo $author >> /etc/nur/author
 #SLOWDNS
 apt update -y
 apt install -y python3 python3-dnslib net-tools
@@ -63,72 +78,6 @@ sed -i 's/#AllowTcpForwarding yes/AllowTcpForwarding yes/g' /etc/ssh/sshd_config
 sed -i 's/Port 22/#Port 22/g' /etc/ssh/sshd_config
 echo "Port 2222" >> /etc/ssh/sshd_config
 echo "Port 22" >> /etc/ssh/sshd_config
-rm -rf /etc/slowdns
-mkdir -m 777 /etc/slowdns
-wget -q -O /etc/slowdns/server.key "https://raw.githubusercontent.com/fisabiliyusri/SLDNS/main/slowdns/server.key"
-wget -q -O /etc/slowdns/server.pub "https://raw.githubusercontent.com/fisabiliyusri/SLDNS/main/slowdns/server.pub"
-wget -q -O /etc/slowdns/sldns-server "https://raw.githubusercontent.com/fisabiliyusri/SLDNS/main/slowdns/sldns-server"
-wget -q -O /etc/slowdns/sldns-client "https://raw.githubusercontent.com/fisabiliyusri/SLDNS/main/slowdns/sldns-client"
-cd
-chmod +x /etc/slowdns/server.key
-chmod +x /etc/slowdns/server.pub
-chmod +x /etc/slowdns/sldns-server
-chmod +x /etc/slowdns/sldns-client
-cd
-#wget -q -O /etc/systemd/system/client-sldns.service "https://raw.githubusercontent.com/fisabiliyusri/SLDNS/main/slowdns/client-sldns.service"
-#wget -q -O /etc/systemd/system/server-sldns.service "https://raw.githubusercontent.com/fisabiliyusri/SLDNS/main/slowdns/server-sldns.service"
-cd
-#install client-sldns.service
-cat > /etc/systemd/system/client-sldns.service << END
-[Unit]
-Description=Client SlowDNS By FunnyVPN
-Documentation=https://nekopoi.care
-After=network.target nss-lookup.target
-[Service]
-Type=simple
-User=root
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/etc/slowdns/sldns-client -udp 8.8.8.8:53 --pubkey-file /etc/slowdns/server.pub $nsdomain 127.0.0.1:3369
-Restart=on-failure
-[Install]
-WantedBy=multi-user.target
-END
-cd
-#install server-sldns.service
-cat > /etc/systemd/system/server-sldns.service << END
-[Unit]
-Description=Server SlowDNS By FunnyVPN
-Documentation=https://nekopoi.care
-After=network.target nss-lookup.target
-[Service]
-Type=simple
-User=root
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/etc/slowdns/sldns-server -udp :5300 -privkey-file /etc/slowdns/server.key $nsdomain 127.0.0.1:2222
-Restart=on-failure
-[Install]
-WantedBy=multi-user.target
-END
-cd
-chmod +x /etc/systemd/system/client-sldns.service
-chmod +x /etc/systemd/system/server-sldns.service
-pkill sldns-server
-pkill sldns-client
-systemctl daemon-reload
-systemctl stop client-sldns
-systemctl stop server-sldns
-systemctl enable client-sldns
-systemctl enable server-sldns
-systemctl start client-sldns
-systemctl start server-sldns
-systemctl restart client-sldns
-systemctl restart server-sldns
-cd
-#END
 #INSTALL SSH
 apt install dropbear
 rm /etc/default/dropbear
@@ -171,15 +120,6 @@ cat> /etc/issue.net <<END
 END
 #ws-stunnel
 cp ws-stunnel /usr/local/bin/ws-stunnel
-# install badvpn
-cd
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/ssh/badvpn-udpgw64"
-chmod +x /usr/bin/badvpn-udpgw
-sed -i '$ i\sleep 30' /etc/rc.local
-sed -i '$ i\screen -dmS stunnel python /usr/local/bin/ws-stunnel' /etc/rc.local
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
 cp addssh.sh /usr/bin/addssh
 cp delssh.sh /usr/bin/delssh
 cp cekssh.sh /usr/bin/cekssh
