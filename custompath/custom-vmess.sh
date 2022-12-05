@@ -22,7 +22,7 @@
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "xxxxxxxxx"
+          "path": xxxxxxxxx
         }
       }
     }
