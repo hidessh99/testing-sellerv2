@@ -34,18 +34,23 @@
             "xver": 1
           },
           {
-            "path": "/hidessh-vmess-ws",
+            "path": "/hidessh-vmessws",
             "dest": 31298,
             "xver": 1
           },
           {
-            "path": "/hidessh-vless-ws",
+            "path": "/hidessh-vlessws",
             "dest": 31297,
             "xver": 1
           },
           {
-            "path": "/hidessh-trojan-ws",
+            "path": "/hidessh-trojanws",
             "dest": 60002,
+            "xver": 1
+          },
+          {
+            "path": "/hidessh-ssws",
+            "dest": 31390,
             "xver": 1
           }
         ]

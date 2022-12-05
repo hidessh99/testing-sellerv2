@@ -46,6 +46,11 @@
             "path": "/hidessh-trojanws",
             "dest": 60002,
             "xver": 1
+          },
+          {
+            "path": "/hidessh-ssws",
+            "dest": 31390,
+            "xver": 1
           }
         ]
       },

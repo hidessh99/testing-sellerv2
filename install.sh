@@ -434,6 +434,46 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+cat> /etc/systemd/system/ss-ws.service << END
+[Unit]
+Description=Xray Service
+Documentation=https://github.com/xtls
+After=network.target nss-lookup.target
+
+[Service]
+User=nobody
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/local/bin/xray run -config /etc/xray/ss-ws.json
+Restart=on-failure
+RestartPreventExitStatus=23
+LimitNPROC=10000
+LimitNOFILE=1000000
+
+[Install]
+WantedBy=multi-user.target
+END
+cat> /etc/systemd/system/ss-grpc.service << END
+[Unit]
+Description=Xray Service
+Documentation=https://github.com/xtls
+After=network.target nss-lookup.target
+
+[Service]
+User=nobody
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/local/bin/xray run -config /etc/xray/ss-grpc.json
+Restart=on-failure
+RestartPreventExitStatus=23
+LimitNPROC=10000
+LimitNOFILE=1000000
+
+[Install]
+WantedBy=multi-user.target
+END
 #enable systemd
 systemctl enable trojan-tcp
 systemctl enable trojan-ws
@@ -442,6 +482,8 @@ systemctl enable vless-ws
 systemctl enable vless-grpc
 systemctl enable vmess-ws
 systemctl enable vmess-grpc
+systemctl enable ss-ws
+systemctl enable ss-grpc
 systemctl enable ntls
 systemctl enable nginx
 
@@ -553,6 +595,10 @@ wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/hidessh99/testi
 wget -q -O /usr/bin/cek-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-vless.sh" && chmod +x /usr/bin/cek-vless
 wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-vless.sh" && chmod +x /usr/bin/del-vless
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vless.sh" && chmod +x /usr/bin/renew-vless
+
+#menu shadowsocks
+
+
 
 #auto deleted account XRAY expired
 wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xp.sh" && chmod +x /usr/bin/xp
