@@ -14,8 +14,12 @@ wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/inst-vpsv
 
 
 
+wget -O /usr/local/bin/add-vmess-user "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/packagepanel/vmesss-custom.sh" && chmod +x /usr/local/bin/add-vmess-user
+
+
+
           {
             "path": "/worryfree",
-            "dest": 70003,
+            "dest": 10002,
             "xver": 1
           }
