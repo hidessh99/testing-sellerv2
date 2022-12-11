@@ -104,26 +104,26 @@ systemctl restart xray > /dev/null 2>&1
 service cron restart > /dev/null 2>&1
 clear
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
-echo -e "     V2Ray/Vmess Account      " | tee -a /etc/log-create-user.log
-echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
-echo -e "Remarks : ${user}" | tee -a /etc/log-create-user.log
-echo -e "Domain : ${domain}" | tee -a /etc/log-create-user.log
-echo -e "Port TLS : ${tls}" | tee -a /etc/log-create-user.log
-echo -e "Port none TLS : ${none}" | tee -a /etc/log-create-user.log
-echo -e "Port  GRPC : ${tls}" | tee -a /etc/log-create-user.log
-echo -e "id : ${user}" | tee -a /etc/log-create-user.log
-echo -e "alterId : 0" | tee -a /etc/log-create-user.log
-echo -e "Security : auto" | tee -a /etc/log-create-user.log
-echo -e "Network : ws" | tee -a /etc/log-create-user.log
-echo -e "Path : /hidessh-vmessws" | tee -a /etc/log-create-user.log
-echo -e "Path Custom: /worryfree" | tee -a /etc/log-create-user.log
-echo -e "Path Custom: /kuota-habis" | tee -a /etc/log-create-user.log
-echo -e "ServiceName : hidessh-vmess-grpc" | tee -a /etc/log-create-user.log
-echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
-echo -e "Link TLS : ${vmesslink1}" | tee -a /etc/log-create-user.log
-echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
-echo -e "Link non-TLS : ${vmesslink2}" | tee -a /etc/log-create-user.log
-echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
-echo -e "Link GRPC : ${vmesslink3}" | tee -a /etc/log-create-user.log
+echo -e "1     V2Ray/Vmess Account      " | tee -a /etc/log-create-user.log
+echo -e "2 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "3 Remarks : ${user}" | tee -a /etc/log-create-user.log
+echo -e "4 Domain : ${domain}" | tee -a /etc/log-create-user.log
+echo -e "5 Port TLS : ${tls}" | tee -a /etc/log-create-user.log
+echo -e "6 Port none TLS : ${none}" | tee -a /etc/log-create-user.log
+echo -e "7 Port  GRPC : ${tls}" | tee -a /etc/log-create-user.log
+echo -e "8 id : ${user}" | tee -a /etc/log-create-user.log
+echo -e "9 alterId : 0" | tee -a /etc/log-create-user.log
+echo -e "10 Security : auto" | tee -a /etc/log-create-user.log
+echo -e "11 Network : ws" | tee -a /etc/log-create-user.log
+echo -e "12 Path : /hidessh-vmessws" | tee -a /etc/log-create-user.log
+echo -e "13 ServiceName : hidessh-vmess-grpc" | tee -a /etc/log-create-user.log
+echo -e "14 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "15 Link TLS : ${vmesslink1}" | tee -a /etc/log-create-user.log
+echo -e "16 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "17 Link non-TLS : ${vmesslink2}" | tee -a /etc/log-create-user.log
+echo -e "18 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "19 Link GRPC : ${vmesslink3}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo "" | tee -a /etc/log-create-user.log
+echo -e "Path Custom: /worryfree" | tee -a /etc/log-create-user.log
+echo -e "Path Custom: /kuota-habis" | tee -a /etc/log-create-user.log
