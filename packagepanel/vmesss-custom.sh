@@ -35,7 +35,7 @@ clear
         done
 
 uuid=$(cat /proc/sys/kernel/random/uuid)
-masaaktif=999
+masaaktif=365
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#xray$/a\#### '"$user $exp"'\
 },{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/vmess-ws.json
@@ -107,7 +107,7 @@ systemctl restart xray > /dev/null 2>&1
 service cron restart > /dev/null 2>&1
 clear
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
-echo -e "     Xray/V2Ray/Vmess Account      " | tee -a /etc/log-create-user.log
+echo -e "     V2Ray/Vmess Account      " | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Remarks : ${user}" | tee -a /etc/log-create-user.log
 echo -e "Domain : ${domain}" | tee -a /etc/log-create-user.log
@@ -120,6 +120,7 @@ echo -e "Security : auto" | tee -a /etc/log-create-user.log
 echo -e "Network : ws" | tee -a /etc/log-create-user.log
 echo -e "Path : /hidessh-vmessws" | tee -a /etc/log-create-user.log
 echo -e "Path Custom: /worryfree" | tee -a /etc/log-create-user.log
+echo -e "Path Custom: /kuota-habis" | tee -a /etc/log-create-user.log
 echo -e "ServiceName : hidessh-vmess-grpc" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Link TLS : ${vmesslink1}" | tee -a /etc/log-create-user.log
