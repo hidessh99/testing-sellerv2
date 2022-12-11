@@ -94,9 +94,6 @@ grpc=`cat<<EOF
       "tls": "tls"
 }
 EOF`
-
-
-
 vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 vmess_base642=$( base64 -w 0 <<< $vmess_json2)
 vmess_base643=$( base64 -w 0 <<< $vmess_json3)
@@ -130,5 +127,3 @@ echo -e "━━━━━━━━━━━━━━━━━━━━━━━�
 echo -e "Link GRPC : ${vmesslink3}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo "" | tee -a /etc/log-create-user.log
-rm /etc/xray/$user-tls.json > /dev/null 2>&1
-rm /etc/xray/$user-none.json > /dev/null 2>&1
