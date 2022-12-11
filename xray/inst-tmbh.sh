@@ -6,7 +6,7 @@
 wget -q -O /etc/xray/svr-vmess-worry.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/svr-vmess-worry.json"
 
 #kouta habis
-wget -q -O /etc/xray/kouta-habis.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/kouta-habis.json" 
+wget -q -O /etc/xray/kouta-habis.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/svr-vmess-habis.json" 
 cd
 #worry free vmess ws
 cat> /etc/systemd/system/vmess-worry.service << END
@@ -32,7 +32,7 @@ END
 #worry free vmess ws
 cat> /etc/systemd/system/vmess-kouta.service << END
 [Unit]
-Description=Vmess Worryfree Service
+Description=Vmess Kouta habis Service
 Documentation=https://github.com/xtls
 After=network.target nss-lookup.target
 

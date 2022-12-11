@@ -19,7 +19,7 @@ wget -O /usr/local/bin/add-vmess-user "https://raw.githubusercontent.com/hidessh
 
 
           {
-            "path": "/worryfree",
-            "dest": 10002,
+            "path": "/kuota-habis",
+            "dest": 20003,
             "xver": 1
           }

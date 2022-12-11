@@ -43,9 +43,12 @@ sed -i '/#xray$/a\#### '"$user $exp"'\
 },{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/vmess-grpc.json
 sed -i '/#xray$/a\#### '"$user $exp"'\
 },{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/svr-vmess-worry.json
-sleep 3 && systemctl restart vmess-ws 
-sleep 3 && systemctl restart vmess-grpc 
-sleep 3 && systemctl restart vmess-worry 
+sed -i '/#xray$/a\#### '"$user $exp"'\
+},{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/kouta-habis.json
+sleep 1 && systemctl restart vmess-ws 
+sleep 1 && systemctl restart vmess-grpc 
+sleep 1 && systemctl restart vmess-worry 
+sleep 1 && systemctl restart vmess-kouta
 asu=`cat<<EOF
       {
       "v": "2",
