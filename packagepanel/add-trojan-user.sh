@@ -44,9 +44,9 @@ trojanlink1="trojan://${uuid}@${domain}:${tr}?mode=gun&security=tls&type=grpc&se
 trojanlink="trojan://${uuid}@${domain}:${tr}?path=%2Fhidessh-trojanws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
 clear
 
-sleep 3 && systemctl restart trojan-ws
-sleep 3 && systemctl restart trojan-tcp 
-sleep 3 && systemctl restart trojan-grpc 
+sleep 1 && systemctl restart trojan-ws
+sleep 1 && systemctl restart trojan-tcp 
+sleep 1 && systemctl restart trojan-grpc 
 
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "       UUID TROJAN ACCOUNT         " | tee -a /etc/log-create-user.log
