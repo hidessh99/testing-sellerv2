@@ -2,10 +2,10 @@
 
 #wget -q -O /usr/local/bin/add-ssh-user "https://raw.githubusercontent.com/hidessh99/Package-tambahan-Seller/main/add-ssh-user.sh" && chmod +x /usr/local/bin/add-ssh-user
 
-#worry free
+#worry free port 10003
 wget -q -O /etc/xray/svr-vmess-worry.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/svr-vmess-worry.json"
 
-#kouta habis
+#kouta habis port 20003
 wget -q -O /etc/xray/kouta-habis.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/svr-vmess-habis.json" 
 cd
 #worry free vmess ws

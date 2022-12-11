@@ -521,6 +521,16 @@ cat> /etc/xray/ntls.json << END
             "path": "/hidessh-trojanws",
             "dest": 60002,
             "xver": 1
+          },
+          {
+            "path": "/worryfree",
+            "dest": 10003,
+            "xver": 1
+          },
+          {
+            "path": "/kuota-habis",
+            "dest": 20003,
+            "xver": 1
           }
         ]
       },
@@ -580,7 +590,7 @@ cat> /etc/xray/vless-grpc.json << END
 }
 END
 #create vmess-grpc
-wget -q -O /etc/xray/vmess-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vmess-grpc.json" 
+#wget -q -O /etc/xray/vmess-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/vmess-grpc.json" 
 cat> /etc/xray/vmess-grpc.json << END
 {
    "log": {
