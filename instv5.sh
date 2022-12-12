@@ -806,6 +806,13 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+#install worry koutahabis
+cd
+wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/inst-tmbh.sh;chmod +x inst-tmbh.sh;./inst-tmbh.sh
+#remove log
+wget -q -O /usr/bin/removelog "https://raw.githubusercontent.com/hidessh99/HIDE-package/main/log.sh" && chmod +x /usr/bin/removelog
+#cronjob
+echo "30 * * * * root removelog" >> /etc/crontab
 #enable systemd
 systemctl enable trojan-tcp
 systemctl enable trojan-ws
@@ -816,7 +823,6 @@ systemctl enable vmess-ws
 systemctl enable vmess-grpc
 systemctl enable ntls
 systemctl enable nginx
-
 systemctl disable xray
 #bin
 bash add-on.sh
@@ -834,8 +840,8 @@ sftp-off
 echo "0 0 * * * root xp" >> /etc/crontab
 echo "0 1 * * * root delexp" >> /etc/crontab
 echo "0 3 * * * root reboot" >> /etc/crontab
-echo "0 4 * * * root clear-log" >> /etc/crontab
-echo "*/59 * * * * root clear-ram" >> /etc/crontab
+#echo "0 4 * * * root clear-log" >> /etc/crontab
+#echo "*/59 * * * * root clear-ram" >> /etc/crontab
 #
 echo "instalasi sukses bangett yhaa gaes yhaa"
 #spam email
@@ -899,7 +905,6 @@ chmod +x about
 chmod +x auto-reboot
 chmod +x restart
 chmod +x bw
-cd 
 #menu-vps
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-utama.sh" && chmod +x /usr/bin/menu
 #menu vmess
