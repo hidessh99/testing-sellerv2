@@ -1,4 +1,4 @@
-#bin bash
+#!/bin/bash
 cd
 wget -q -O /etc/systemd/system/trojan-tcp.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/trojan-tcp.service"
 wget -q -O /etc/systemd/system/ntls.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/ntls.service"
@@ -21,6 +21,17 @@ chmod +x /etc/systemd/system/vmess-ws.service
 chmod +x /etc/systemd/system/vmess-grpc.service
 chmod +x /etc/systemd/system/trojan-ws.service
 chmod +x /etc/systemd/system/trojan-grpc.service
+
+systemctl enable trojan-tcp
+systemctl enable trojan-ws
+systemctl enable trojan-grpc
+systemctl enable vless-ws
+systemctl enable vless-grpc
+systemctl enable vmess-ws
+systemctl enable vmess-grpc
+systemctl enable ntls
+systemctl enable nginx
+systemctl disable xray
 
 #deleted file
 rm -rf /root/inst-service.sh

@@ -32,21 +32,13 @@ touch /etc/v2ray/domain
 touch /etc/xray/scdomain
 touch /etc/v2ray/scdomain
 touch /var/lib/scrz-prem/ipvps.conf
-
+#add dns
 wget -q https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/add-dns.sh;chmod +x add-dns.sh;./add-dns.sh
-
-#send
+#send domain
 domain=$(cat /root/subdomain)
 nsdomain=$(cat /root/nsdomain)
-#echo $domain >> /etc/xray/domain
 echo $ipku >> /etc/xray/public
-#send
-
-echo $nsdomain >> /etc/xray/nsdomain
-echo $ipku >> /etc/xray/public
-#echo $resdomain >> /etc/xray/resdomain
-#echo $author >> /etc/nur/author
-#SLOWDNS
+#update paket
 apt update -y
 apt install -y python3 python3-dnslib net-tools
 apt install ncurses-utils -y
@@ -73,12 +65,15 @@ cd /usr/bin
 wget -O sl-fix "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/sslh-fix/sl-fix"
 chmod +x sl-fix
 sl-fix
+#edit ssh
 cd
 sed -i 's/#AllowTcpForwarding yes/AllowTcpForwarding yes/g' /etc/ssh/sshd_config
 sed -i 's/Port 22/#Port 22/g' /etc/ssh/sshd_config
 echo "Port 2222" >> /etc/ssh/sshd_config
 echo "Port 22" >> /etc/ssh/sshd_config
-#INSTALL SSH
+echo "Port 200" >> /etc/ssh/sshd_config
+sleep 1
+#INSTALL Dropbear
 apt install dropbear
 rm /etc/default/dropbear
 rm /etc/issue.net
@@ -90,7 +85,7 @@ NO_START=0
 DROPBEAR_PORT=143
 
 # any additional arguments for Dropbear
-DROPBEAR_EXTRA_ARGS="-p 109 -p 69 "
+DROPBEAR_EXTRA_ARGS="-p 109 -p 69"
 
 # specify an optional banner file containing a message to be
 # sent to clients before they connect, such as "/etc/issue.net"
@@ -112,12 +107,7 @@ END
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
-cat> /etc/issue.net <<END
-<br>
-<font color="blue"><b>===============================</br></font><br>
-<font color="red"><b>********  HideSSH  ********</b></font><br>
-<font color="blue"><b>===============================</br></font><br>
-END
+
 #ws-stunnel
 cp ws-stunnel /usr/local/bin/ws-stunnel
 cp addssh.sh /usr/bin/addssh
@@ -635,33 +625,23 @@ cat> /etc/xray/vmess-grpc.json << END
   ]
 }
 END
-#json trojan ws none tls
-
 #seting jam
 mv /etc/localtime /etc/localtime.bak
 ln -s /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 #create service systemd
+cd
 wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/inst-service.sh;chmod +x inst-service.sh;./inst-service.sh
+sleep 1
 #install worry koutahabis
 cd
 wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xray/inst-tmbh.sh;chmod +x inst-tmbh.sh;./inst-tmbh.sh
+sleep 1
 #remove log
 wget -q -O /usr/bin/removelog "https://raw.githubusercontent.com/hidessh99/HIDE-package/main/log.sh" && chmod +x /usr/bin/removelog
 #cronjob
 echo "30 * * * * root removelog" >> /etc/crontab
 #enable systemd
-systemctl enable trojan-tcp
-systemctl enable trojan-ws
-systemctl enable trojan-grpc
-systemctl enable vless-ws
-systemctl enable vless-grpc
-systemctl enable vmess-ws
-systemctl enable vmess-grpc
-systemctl enable ntls
-systemctl enable nginx
-systemctl disable xray
 #bin
-bash add-on.sh
 systemctl enable rc-local.service
 #telegram-sendapt insta
 apt install python3 python3-pip -y
@@ -696,51 +676,6 @@ clear-log
 cd
 wget -O /etc/xray/xray.crt https://raw.githubusercontent.com/hidessh99/SSL/main/xray.crt
 wget -O /etc/xray/xray.key https://raw.githubusercontent.com/hidessh99/SSL/main/xray.key
-cd /usr/bin/
-wget -O menu-ssh "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-ssh.sh"
-wget -O usernew "https://raw.githubusercontent.com/bracoli/v4/main/ssh/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/bracoli/v4/main/ssh/trial.sh"
-wget -O renew "https://raw.githubusercontent.com/bracoli/v4/main/ssh/renew.sh"
-wget -O hapus "https://raw.githubusercontent.com/bracoli/v4/main/ssh/hapus.sh"
-wget -O cek "https://raw.githubusercontent.com/bracoli/v4/main/ssh/cek.sh"
-wget -O member "https://raw.githubusercontent.com/bracoli/v4/main/ssh/member.sh"
-wget -O delete "https://raw.githubusercontent.com/bracoli/v4/main/ssh/delete.sh"
-wget -O autokill "https://raw.githubusercontent.com/bracoli/v4/main/ssh/autokill.sh"
-wget -O ceklim "https://raw.githubusercontent.com/bracoli/v4/main/ssh/ceklim.sh"
-wget -O tendang "https://raw.githubusercontent.com/bracoli/v4/main/ssh/tendang.sh"
-wget -O menu-set "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-set.sh"
-wget -O menu-domain "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-domain.sh"
-wget -O add-host "https://raw.githubusercontent.com/bracoli/v4/main/ssh/add-host.sh"
-wget -O port-change "https://raw.githubusercontent.com/bracoli/v4/main/port/port-change.sh"
-wget -O certv2ray "https://raw.githubusercontent.com/bracoli/v4/main/xray/certv2ray.sh"
-wget -O menu-webmin "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-webmin.sh"
-wget -O speedtest "https://raw.githubusercontent.com/bracoli/v4/main/ssh/speedtest_cli.py"
-wget -O about "https://raw.githubusercontent.com/bracoli/v4/main/menu/about.sh"
-wget -O auto-reboot "https://raw.githubusercontent.com/bracoli/v4/main/menu/auto-reboot.sh"
-wget -O restart "https://raw.githubusercontent.com/bracoli/v4/main/menu/restart.sh"
-wget -O bw "https://raw.githubusercontent.com/bracoli/v4/main/menu/bw.sh"
-chmod +x menu-ssh
-chmod +x usernew
-chmod +x trial
-chmod +x renew
-chmod +x hapus
-chmod +x cek
-chmod +x member
-chmod +x delete
-chmod +x autokill
-chmod +x ceklim
-chmod +x tendang
-chmod +x menu-set
-chmod +x menu-domain
-chmod +x add-host
-chmod +x port-change
-chmod +x certv2ray
-chmod +x menu-webmin
-chmod +x speedtest
-chmod +x about
-chmod +x auto-reboot
-chmod +x restart
-chmod +x bw
 #menu-vps
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-utama.sh" && chmod +x /usr/bin/menu
 #menu vmess
