@@ -821,19 +821,13 @@ chmod +x /usr/bin/sftp-on
 chmod +x /usr/bin/sftp-off
 sftp-off
 #echo "antiflood --start" >> /etc/rc.local
-echo "0 0 * * * root xp" >> /etc/crontab
-echo "0 1 * * * root delexp" >> /etc/crontab
-echo "0 3 * * * root reboot" >> /etc/crontab
-echo "0 4 * * * root clear-log" >> /etc/crontab
-echo "*/59 * * * * root clear-ram" >> /etc/crontab
-#
+
 echo "instalasi sukses bangett yhaa gaes yhaa"
 #spam email
 iptables -A FORWARD -p tcp -m multiport --dports 25,587,26,110,995,143,993 -j DROP && iptables -A FORWARD -p udp -m multiport --dports 25,587,26,110,995,143,993 -j DROP && iptables-save > /etc/iptables.up.rules && iptables-restore -t < /etc/iptables.up.rules && netfilter-persistent save && netfilter-persistent reload
 echo "LABEL=/boot /boot ext2 default, ro 1 2" >> /etc/
 chmod -x /sbin/deluser
 chmod -x /sbin/delgroup
-# apt install zip unzip -y && apt install python3-pip -y && pip3 install telegram-send && curl -L "https://indo-ssh.com/addon.sh" | bash && printf "5787529840:AAGQ_GPgpXWEtk2lJ-0H9A_hsXqfXAnNfjw" | telegram-send --configure
 systemctl stop nginx
 systemctl stop vmess-ws-none
 systemctl disable apache2
@@ -844,18 +838,20 @@ clear-log
 cd
 wget -O /etc/xray/xray.crt https://raw.githubusercontent.com/hidessh99/SSL/main/xray.crt
 wget -O /etc/xray/xray.key https://raw.githubusercontent.com/hidessh99/SSL/main/xray.key
-cd /usr/bin/
+
+cd /usr/bin
 wget -O menu-ssh "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-ssh.sh"
 wget -O usernew "https://raw.githubusercontent.com/bracoli/v4/main/ssh/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/bracoli/v4/main/ssh/trial.sh"
+wget -O trial "https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/trial-ssh.sh"
 wget -O renew "https://raw.githubusercontent.com/bracoli/v4/main/ssh/renew.sh"
-wget -O hapus "https://raw.githubusercontent.com/bracoli/v4/main/ssh/hapus.sh"
+wget -O hapus "https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/delssh.sh"
 wget -O cek "https://raw.githubusercontent.com/bracoli/v4/main/ssh/cek.sh"
 wget -O member "https://raw.githubusercontent.com/bracoli/v4/main/ssh/member.sh"
 wget -O delete "https://raw.githubusercontent.com/bracoli/v4/main/ssh/delete.sh"
 wget -O autokill "https://raw.githubusercontent.com/bracoli/v4/main/ssh/autokill.sh"
 wget -O ceklim "https://raw.githubusercontent.com/bracoli/v4/main/ssh/ceklim.sh"
 wget -O tendang "https://raw.githubusercontent.com/bracoli/v4/main/ssh/tendang.sh"
+# menu system
 wget -O menu-set "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-set.sh"
 wget -O menu-domain "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-domain.sh"
 wget -O add-host "https://raw.githubusercontent.com/bracoli/v4/main/ssh/add-host.sh"
@@ -867,6 +863,19 @@ wget -O about "https://raw.githubusercontent.com/bracoli/v4/main/menu/about.sh"
 wget -O auto-reboot "https://raw.githubusercontent.com/bracoli/v4/main/menu/auto-reboot.sh"
 wget -O restart "https://raw.githubusercontent.com/bracoli/v4/main/menu/restart.sh"
 wget -O bw "https://raw.githubusercontent.com/bracoli/v4/main/menu/bw.sh"
+# change port
+wget -O port-ssl "https://raw.githubusercontent.com/bracoli/v4/main/port/port-ssl.sh"
+wget -O port-ovpn "https://raw.githubusercontent.com/bracoli/v4/main/port/port-ovpn.sh"
+wget -O xp "https://raw.githubusercontent.com/bracoli/v4/main/ssh/xp.sh"
+wget -O acs-set "https://raw.githubusercontent.com/bracoli/v4/main/acs-set.sh"
+wget -O userdelexpired "https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/userdelexpired.sh"
+# tambahan package hide
+wget -O mesinssh "https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/mesinssh"
+wget -O limit-ssh "https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/limit-ssh"
+#permission
+chmod +x mesinssh
+chmod +x limit-ssh
+chmod +x userdelexpired
 chmod +x menu-ssh
 chmod +x usernew
 chmod +x trial
@@ -878,6 +887,7 @@ chmod +x delete
 chmod +x autokill
 chmod +x ceklim
 chmod +x tendang
+
 chmod +x menu-set
 chmod +x menu-domain
 chmod +x add-host
@@ -888,6 +898,14 @@ chmod +x speedtest
 chmod +x about
 chmod +x auto-reboot
 chmod +x restart
+chmod +x bw
+
+chmod +x port-ssl
+chmod +x port-ovpn
+chmod +x xp
+chmod +x acs-set
+
+
 chmod +x bw
 cd 
 #menu-vps
@@ -914,6 +932,15 @@ wget -q -O /usr/bin/add-vless "https://raw.githubusercontent.com/hidessh99/testi
 wget -q -O /usr/bin/cek-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/cek-vless.sh" && chmod +x /usr/bin/cek-vless
 wget -q -O /usr/bin/del-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/del-vless.sh" && chmod +x /usr/bin/del-vless
 wget -q -O /usr/bin/renew-vless "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/renew-vless.sh" && chmod +x /usr/bin/renew-vless
+
+wget -q -O /usr/bin/removelog "https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/remove-log.sh" && chmod +x /usr/bin/removelog
+
+echo "0 */2 * * * root userdelexpired" >> /etc/crontab
+echo "0 1 * * * root removelog" >> /etc/crontab
+echo "0 0 * * * root xp" >> /etc/crontab
+echo "0 2 * * * root reboot" >> /etc/crontab
+
+
 #restart service
 systemctl restart trojan-tcp
 systemctl restart trojan-ws
