@@ -1,0 +1,42 @@
+{
+   "log": {
+      "access": "/var/log/xray/vmess.log",
+      "loglevel": "info"
+  },
+ "inbounds": [
+    {
+      "port": 31303,
+      "listen": "127.0.0.1",
+      "protocol": "vmess",
+      "tag": "vmessGRPC",
+      "settings": {
+        "clients": [
+          {
+            "id": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
+#xray
+          }
+        ],
+        "fallbacks": [
+          {
+            "dest": "81"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "none",
+        "grpcSettings": {
+          "serviceName": "hidessh-vmess-grpc",
+          "multiMode": true,
+          "acceptProxyProtocol": true
+        }
+      }
+    }
+  ],
+  "outbounds": [
+      {
+          "protocol": "freedom",
+          "tag": "direct"
+      }
+  ]
+}

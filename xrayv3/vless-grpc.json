@@ -1,0 +1,38 @@
+{
+   "log": {
+      "access": "/var/log/xray/vless.log",
+      "loglevel": "info"
+  },
+ "inbounds": [
+    {
+      "port": 31301,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "tag": "vlessGRPC",
+      "settings": {
+        "clients": [
+          {
+            "id": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
+#xray
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "none",
+        "grpcSettings": {
+          "serviceName": "hidessh-vless-grpc",
+          "multiMode": true,
+          "acceptProxyProtocol": true
+        }
+      }
+    }
+  ],
+  "outbounds": [
+      {
+          "protocol": "freedom",
+          "tag": "direct"
+      }
+  ]
+}
