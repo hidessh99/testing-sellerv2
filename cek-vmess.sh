@@ -8,7 +8,7 @@ clear
 echo -n > /tmp/other.txt
 data=( `cat /etc/xray/vmess-ws.json | grep '^####' | cut -d ' ' -f 2 | sort | uniq`);
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "\\E[0;41;36m         Trojan User Login          \E[0m"
+echo -e "\\E[0;41;36m        Vmeess User Login          \E[0m"
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 for akun in "${data[@]}"
 do

@@ -41,14 +41,11 @@ read -p "Expired (Ex. 1 days): " masaaktif
 exp=`date -d "$masaaktif" +"%Y-%m-%d"`
 
 sed -i '/#xray$/a\#### '"$user $exp"'\
-},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/vmess-ws-none.json
-sed -i '/#xray$/a\#### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/vmess-ws.json
 sed -i '/#xray$/a\#### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/vmess-grpc.json
-sleep 5 && systemctl restart vmess-ws &
-sleep 5 && systemctl restart vmess-grpc &
-sleep 5 && systemctl restart vmess-ws-none
+sleep 2 && systemctl restart vmess-ws &
+sleep 2 && systemctl restart vmess-grpc &
 asu=`cat<<EOF
       {
       "v": "2",

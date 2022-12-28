@@ -11,7 +11,9 @@ wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/custompat
 wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/inst-vpsv2.sh;chmod +x inst-vpsv2.sh;./inst-vpsv2.sh
 
 
+wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/inst-vpsv2.sh && chmod +x inst-vpsv2.sh && sed -i -e 's/\r$//' inst-vpsv2.sh && screen -S inst-vpsv2 ./inst-vpsv2.sh
 
+wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/inst-vpsv2.sh;chmod +x inst-vpsv2.sh;screen -S inst-vpsv2 ./inst-vpsv2.sh
 
 
 wget -O /usr/local/bin/add-vmess-user "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/packagepanel/vmesss-custom.sh" && chmod +x /usr/local/bin/add-vmess-user
@@ -23,3 +25,26 @@ wget -O /usr/local/bin/add-vmess-user "https://raw.githubusercontent.com/hidessh
             "dest": 20003,
             "xver": 1
           }
+
+
+systemctl restart trojan-tcp
+systemctl restart trojan-ws
+systemctl restart trojan-grpc
+systemctl restart vless-ws
+systemctl restart vless-grpc
+systemctl restart vmess-ws
+systemctl restart vmess-grpc
+systemctl restart ntls
+systemctl restart nginx
+
+
+
+systemctl status trojan-tcp
+systemctl status trojan-ws
+systemctl status trojan-grpc
+systemctl status vless-ws
+systemctl status vless-grpc
+systemctl status vmess-ws
+systemctl status vmess-grpc
+systemctl status ntls
+systemctl restart nginx
