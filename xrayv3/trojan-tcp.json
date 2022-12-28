@@ -1,0 +1,76 @@
+{
+  "log": {
+      "access": "/var/log/xray/trojan.log",
+      "loglevel": "info"
+  },
+  "inbounds": [
+    {
+      "port": 443,
+      "protocol": "trojan",
+      "tag": "TROJANTCP",
+      "settings": {
+        "clients": [
+          {
+            "password": "eef46d87-ae46-d801-e0d4-6c87ae46d801",
+            "flow": "xtls-rprx-direct",
+            "email": "trojan.ket-yt.xyz_VLESS_XTLS/TLS-direct_TCP"
+#xray
+          }
+        ],
+        "decryption": "none",
+        "fallbacks": [
+          {
+            "alpn": "h2",
+            "dest": 31302,
+            "xver": 0
+          },
+          {
+            "path": "/",
+            "dest": 700,
+            "xver": 1
+          },
+          {
+            "dest": 143,
+            "xver": 1
+          },
+          {
+            "path": "/hidessh-vmessws",
+            "dest": 31298,
+            "xver": 1
+          },
+          {
+            "path": "/hidessh-vlessws",
+            "dest": 31297,
+            "xver": 1
+          },
+          {
+            "path": "/hidessh-trojanws",
+            "dest": 60002,
+            "xver": 1
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "xtls",
+        "xtlsSettings": {
+          "minVersion": "1.2",
+          "certificates": [
+            {
+              "certificateFile": "/etc/xray/xray.crt",
+              "keyFile": "/etc/xray/xray.key",
+              "ocspStapling": 3600,
+              "usage": "encipherment"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbounds": [
+      {
+          "protocol": "freedom",
+          "tag": "direct"
+      }
+  ]
+}
