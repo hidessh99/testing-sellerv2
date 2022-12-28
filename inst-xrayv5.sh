@@ -120,7 +120,9 @@ cat> /etc/issue.net <<END
 END
 
 cd
-#END
+#seting jam
+mv /etc/localtime /etc/localtime.bak
+ln -s /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 #install nginx
 sudo apt install gnupg2 ca-certificates lsb-release -y
 fiyaku=$(lsb_release -a | sed -n 1p | cut -f 2 | tr A-Z a-z) 
@@ -168,175 +170,26 @@ wget -O /etc/xray/vless-grpc.json "https://raw.githubusercontent.com/hidessh99/t
 wget -O /etc/xray/vmess-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xrayv3/vmess-grpc.json"
 
 
-#seting jam
-mv /etc/localtime /etc/localtime.bak
-ln -s /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-#create service systemd
-#trojan-tcp
-cat> /etc/systemd/system/trojan-tcp.service << END
-[Unit]
-Description=Xray Service
-Documentation=https://github.com/xtls
-After=network.target nss-lookup.target
+#Service NTLS Port 80
+wget -O /etc/systemd/system/ntls.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/ntls.service"
+#Service  Trojan Port 443
+wget -O /etc/systemd/system/trojan-tcp.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/trojan-tcp.service"
 
-[Service]
-User=nobody
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /etc/xray/trojan-tcp.json
-Restart=on-failure
-RestartPreventExitStatus=23
-LimitNPROC=10000
-LimitNOFILE=1000000
+#Service Trojan WS
+wget -O /etc/systemd/system/trojan-ws.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/trojan-ws.service"
+#Service Trojan GRPC
+wget -O /etc/systemd/system/trojan-grpc.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/trojan-grpc.service"
 
-[Install]
-WantedBy=multi-user.target
-END
-#ntls
-cat> /etc/systemd/system/ntls.service << END
-[Unit]
-Description=Xray Service
-Documentation=https://github.com/xtls
-After=network.target nss-lookup.target
+#Service Vless WS
+wget -O /etc/systemd/system/vless-ws.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/vless-ws.service"
+#Service Vless GRPC
+wget -O /etc/systemd/system/vless-grpc.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/vless-grpc.service"
 
-[Service]
-User=nobody
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /etc/xray/ntls.json
-Restart=on-failure
-RestartPreventExitStatus=23
-LimitNPROC=10000
-LimitNOFILE=1000000
+#Service Vmess WS
+wget -O /etc/systemd/system/vmess-ws.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/vmess-ws.service"
+#Service Vmess GRPC
+wget -O /etc/systemd/system/vmess-grpc.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/vmess-grpc.service"
 
-[Install]
-WantedBy=multi-user.target
-END
-#trojan-ws
-cat> /etc/systemd/system/trojan-ws.service << END
-[Unit]
-Description=Xray Service
-Documentation=https://github.com/xtls
-After=network.target nss-lookup.target
-
-[Service]
-User=nobody
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /etc/xray/trojan-ws.json
-Restart=on-failure
-RestartPreventExitStatus=23
-LimitNPROC=10000
-LimitNOFILE=1000000
-
-[Install]
-WantedBy=multi-user.target
-END
-#trojan-grpc
-cat> /etc/systemd/system/trojan-grpc.service << END
-[Unit]
-Description=Xray Service
-Documentation=https://github.com/xtls
-After=network.target nss-lookup.target
-
-[Service]
-User=nobody
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /etc/xray/trojan-grpc.json
-Restart=on-failure
-RestartPreventExitStatus=23
-LimitNPROC=10000
-LimitNOFILE=1000000
-
-[Install]
-WantedBy=multi-user.target
-END
-#vless-ws
-cat> /etc/systemd/system/vless-ws.service << END
-[Unit]
-Description=Xray Service
-Documentation=https://github.com/xtls
-After=network.target nss-lookup.target
-
-[Service]
-User=nobody
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /etc/xray/vless-ws.json
-Restart=on-failure
-RestartPreventExitStatus=23
-LimitNPROC=10000
-LimitNOFILE=1000000
-
-[Install]
-WantedBy=multi-user.target
-END
-cat> /etc/systemd/system/vless-grpc.service << END
-[Unit]
-Description=Xray Service
-Documentation=https://github.com/xtls
-After=network.target nss-lookup.target
-
-[Service]
-User=nobody
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /etc/xray/vless-grpc.json
-Restart=on-failure
-RestartPreventExitStatus=23
-LimitNPROC=10000
-LimitNOFILE=1000000
-
-[Install]
-WantedBy=multi-user.target
-END
-cat> /etc/systemd/system/vmess-ws.service << END
-[Unit]
-Description=Xray Service
-Documentation=https://github.com/xtls
-After=network.target nss-lookup.target
-
-[Service]
-User=nobody
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /etc/xray/vmess-ws.json
-Restart=on-failure
-RestartPreventExitStatus=23
-LimitNPROC=10000
-LimitNOFILE=1000000
-
-[Install]
-WantedBy=multi-user.target
-END
-cat> /etc/systemd/system/vmess-grpc.service << END
-[Unit]
-Description=Xray Service
-Documentation=https://github.com/xtls
-After=network.target nss-lookup.target
-
-[Service]
-User=nobody
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /etc/xray/vmess-grpc.json
-Restart=on-failure
-RestartPreventExitStatus=23
-LimitNPROC=10000
-LimitNOFILE=1000000
-
-[Install]
-WantedBy=multi-user.target
-END
 #enable systemd
 systemctl enable trojan-tcp
 systemctl enable trojan-ws
@@ -347,8 +200,8 @@ systemctl enable vmess-ws
 systemctl enable vmess-grpc
 systemctl enable ntls
 systemctl enable nginx
-
 systemctl disable xray
+
 #bin
 bash add-on.sh
 systemctl enable rc-local.service
@@ -375,80 +228,16 @@ systemctl disable apache2
 systemctl stop apache2
 cert
 clear-log
-#pasang SSL
+
+#install  SSL
 cd
 wget -O /etc/xray/xray.crt https://raw.githubusercontent.com/hidessh99/SSL/main/xray.crt
 wget -O /etc/xray/xray.key https://raw.githubusercontent.com/hidessh99/SSL/main/xray.key
 
-cd /usr/bin
-wget -O menu-ssh "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-ssh.sh"
-wget -O usernew "https://raw.githubusercontent.com/bracoli/v4/main/ssh/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/trial-ssh.sh"
-wget -O renew "https://raw.githubusercontent.com/bracoli/v4/main/ssh/renew.sh"
-wget -O hapus "https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/delssh.sh"
-wget -O cek "https://raw.githubusercontent.com/bracoli/v4/main/ssh/cek.sh"
-wget -O member "https://raw.githubusercontent.com/bracoli/v4/main/ssh/member.sh"
-wget -O delete "https://raw.githubusercontent.com/bracoli/v4/main/ssh/delete.sh"
-wget -O autokill "https://raw.githubusercontent.com/bracoli/v4/main/ssh/autokill.sh"
-wget -O ceklim "https://raw.githubusercontent.com/bracoli/v4/main/ssh/ceklim.sh"
-wget -O tendang "https://raw.githubusercontent.com/bracoli/v4/main/ssh/tendang.sh"
-# menu system
-wget -O menu-set "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-set.sh"
-wget -O menu-domain "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-domain.sh"
-wget -O add-host "https://raw.githubusercontent.com/bracoli/v4/main/ssh/add-host.sh"
-wget -O port-change "https://raw.githubusercontent.com/bracoli/v4/main/port/port-change.sh"
-wget -O certv2ray "https://raw.githubusercontent.com/bracoli/v4/main/xray/certv2ray.sh"
-wget -O menu-webmin "https://raw.githubusercontent.com/bracoli/v4/main/menu/menu-webmin.sh"
-wget -O speedtest "https://raw.githubusercontent.com/bracoli/v4/main/ssh/speedtest_cli.py"
-wget -O about "https://raw.githubusercontent.com/bracoli/v4/main/menu/about.sh"
-wget -O auto-reboot "https://raw.githubusercontent.com/bracoli/v4/main/menu/auto-reboot.sh"
-wget -O restart "https://raw.githubusercontent.com/bracoli/v4/main/menu/restart.sh"
-wget -O bw "https://raw.githubusercontent.com/bracoli/v4/main/menu/bw.sh"
-# change port
-wget -O port-ssl "https://raw.githubusercontent.com/bracoli/v4/main/port/port-ssl.sh"
-wget -O port-ovpn "https://raw.githubusercontent.com/bracoli/v4/main/port/port-ovpn.sh"
-wget -O xp "https://raw.githubusercontent.com/bracoli/v4/main/ssh/xp.sh"
-wget -O acs-set "https://raw.githubusercontent.com/bracoli/v4/main/acs-set.sh"
-wget -O userdelexpired "https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/userdelexpired.sh"
-# tambahan package hide
-wget -O mesinssh "https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/mesinssh"
-wget -O limit-ssh "https://raw.githubusercontent.com/hidessh99/Package-Seller-SSH/main/limit-ssh"
-#permission
-chmod +x mesinssh
-chmod +x limit-ssh
-chmod +x userdelexpired
-chmod +x menu-ssh
-chmod +x usernew
-chmod +x trial
-chmod +x renew
-chmod +x hapus
-chmod +x cek
-chmod +x member
-chmod +x delete
-chmod +x autokill
-chmod +x ceklim
-chmod +x tendang
-
-chmod +x menu-set
-chmod +x menu-domain
-chmod +x add-host
-chmod +x port-change
-chmod +x certv2ray
-chmod +x menu-webmin
-chmod +x speedtest
-chmod +x about
-chmod +x auto-reboot
-chmod +x restart
-chmod +x bw
-
-chmod +x port-ssl
-chmod +x port-ovpn
-chmod +x xp
-chmod +x acs-set
-
-
-chmod +x bw
 cd 
+#package SSH
+wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/pckg-new.sh;chmod +x;pckg-new.sh;./pckg-new.sh
+
 #menu-vps
 wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/menu-utama.sh" && chmod +x /usr/bin/menu
 #menu vmess
@@ -480,7 +269,6 @@ echo "0 */2 * * * root userdelexpired" >> /etc/crontab
 echo "0 1 * * * root removelog" >> /etc/crontab
 echo "0 0 * * * root xp" >> /etc/crontab
 echo "0 2 * * * root reboot" >> /etc/crontab
-
 
 #restart service
 systemctl restart trojan-tcp
