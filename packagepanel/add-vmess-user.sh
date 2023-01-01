@@ -41,8 +41,8 @@ sed -i '/#xray$/a\#### '"$user $exp"'\
 },{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/vmess-ws.json
 sed -i '/#xray$/a\#### '"$user $exp"'\
 },{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/vmess-grpc.json
-sleep 3 && systemctl restart vmess-ws 
-sleep 3 && systemctl restart vmess-grpc 
+sleep 1 && systemctl restart vmess-ws 
+sleep 1 && systemctl restart vmess-grpc 
 asu=`cat<<EOF
       {
       "v": "2",

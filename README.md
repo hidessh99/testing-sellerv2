@@ -20,6 +20,19 @@ wget -O /usr/local/bin/add-vmess-user "https://raw.githubusercontent.com/hidessh
 
 
 
+
+#add pacege panell
+
+wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/packagepanel/inst-panel.sh;chmod +x inst-panel.sh;./inst-panel.sh
+
+add trojan 
+
+wget -O /usr/local/bin/add-vmess-user "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/packagepanel/vmesss-custom.sh" && chmod +x /usr/local/bin/add-vmess-user
+
+
+
+
+
           {
             "path": "/kuota-habis",
             "dest": 20003,
@@ -48,3 +61,9 @@ systemctl status vmess-ws
 systemctl status vmess-grpc
 systemctl status ntls
 systemctl restart nginx
+
+
+
+
+
+wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/inst-xrayv5.sh && chmod +x inst-xrayv5.sh && sed -i -e 's/\r$//' inst-xrayv5.sh && screen -S inst-xrayv5 ./inst-xrayv5.sh
