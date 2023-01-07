@@ -1,0 +1,146 @@
+{
+   "log": {
+      "access": "/var/log/xray/trojan.log",
+      "loglevel": "info"
+  },
+ "inbounds": [
+     {
+      "listen": "127.0.0.1",
+      "port": 10001,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "127.0.0.1"
+      },
+      "tag": "api"
+    },
+    {
+      "port": 60002,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "tag": "trojanWS",
+      "settings": {
+        "clients": [
+          {
+            "password": "10977d20-8db1-11ed-801d-00163e296439"
+#xray
+#### rmat 2023-01-14
+},{"password": "4d91d2d6-8e45-11ed-a1d0-00163e296439","email": "rmat"
+#### sig01 2023-02-06
+},{"password": "60cf2132-8e31-11ed-b54e-00163e296439","email": "sig01"
+#### suster 2023-02-05
+},{"password": "814b153c-8dc4-11ed-93e4-00163e296439","email": "suster"
+          }
+        ],
+        "fallbacks": [
+          {
+            "dest": "81"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "acceptProxyProtocol": true,
+          "path": "/trojanws"
+        }
+      },
+      "sniffing": {
+         "enabled": true,
+         "destOverride": [
+                 "http",
+                 "tls"
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    },
+        {
+            "tag":"DNS_OUT",
+            "protocol":"freedom",
+            "settings":{
+                "domainStrategy":"UseIPv4"
+            },
+            "sendThrough":"103.167.35.122"
+        },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "AsIs",      
+    "rules": [
+      {
+        "type": "field",
+        "ip": [
+          "0.0.0.0/8",
+          "10.0.0.0/8",
+          "100.64.0.0/10",
+          "169.254.0.0/16",
+          "172.16.0.0/12",
+          "192.0.0.0/24",
+          "192.0.2.0/24",
+          "192.168.0.0/16",
+          "198.18.0.0/15",
+          "198.51.100.0/24",
+          "203.0.113.0/24",
+          "::1/128",
+          "fc00::/7",
+          "fe80::/10"
+        ],
+        "outboundTag": "blocked"
+      },
+      {
+        "inboundTag": [
+          "api"
+        ],
+        "outboundTag": "api",
+        "type": "field"
+      },
+            {
+                "type":"field",
+                "outboundTag":"DNS_OUT",
+                "domain":[
+                    "geosite:netflix",
+         	           "hotstar",
+                    "ip",
+                    "speedtest"
+                ]
+            },
+      {
+        "type": "field",
+        "outboundTag": "blocked",
+        "protocol": [
+          "bittorrent"
+        ]
+      }
+    ]
+  },
+  "stats": {},
+  "api": {
+    "services": [
+      "StatsService"
+    ],
+    "tag": "api"
+  },
+  "policy": {
+    "levels": {
+      "0": {
+        "statsUserDownlink": true,
+        "statsUserUplink": true
+      }
+    },
+    "system": {
+      "statsInboundUplink": true,
+      "statsInboundDownlink": true,
+      "statsOutboundUplink" : true,
+      "statsOutboundDownlink" : true
+    }
+  }
+}    

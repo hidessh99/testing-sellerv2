@@ -1,0 +1,64 @@
+{
+  "log": {
+      "access": "/var/log/xray/trojan.log",
+      "loglevel": "info"
+  },
+  "inbounds": [
+    {
+      "port": 8080,
+      "protocol": "trojan",
+      "tag": "TROJANTCP",
+      "settings": {
+        "clients": [
+          {
+            "password": "109dedd6-8db1-11ed-9d94-00163e296439",
+            "flow": "xtls-rprx-direct",
+            "email": "trojan.ket-yt.xyz_VLESS_XTLS/TLS-direct_TCP"
+          }
+        ],
+        "decryption": "none",
+        "fallbacks": [
+          {
+            "dest": 8000,
+            "xver": 1
+          },
+          {
+            "path": "/kuota-habis",
+            "dest": 30301,
+            "xver": 1
+          },
+          {
+            "path": "/worryfree",
+            "dest": 30302,
+            "xver": 1
+          },
+          {
+            "path": "/vmessws",
+            "dest": 31298,
+            "xver": 1
+          },
+          {
+            "path": "/vlessws",
+            "dest": 31297,
+            "xver": 1
+          },
+          {
+            "path": "/trojanws",
+            "dest": 60002,
+            "xver": 1
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none"
+      }
+    }
+  ],
+  "outbounds": [
+      {
+          "protocol": "freedom",
+          "tag": "direct"
+      }
+  ]
+}
