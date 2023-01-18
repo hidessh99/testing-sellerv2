@@ -169,9 +169,9 @@ wget -O /etc/xray/vless-grpc.json "https://raw.githubusercontent.com/hidessh99/t
 wget -O /etc/xray/vmess-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vmess-grpc.json"
 
 #xray WorryFree
-wget -O /etc/xray/worryfree.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vmess-ws-orbit.json"
+wget -O /etc/xray/worryfree.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vmess-ws-orbit1.json"
 #xray KoutaHabis
-wget -O /etc/xray/koutahabis.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vmess-ws-orbit1.json"
+wget -O /etc/xray/koutahabis.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vmess-ws-orbit.json"
 
 #servive worryfree
 wget -O /etc/systemd/system/worryfree.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/worryfree.service"
@@ -201,6 +201,8 @@ wget -O /etc/systemd/system/vmess-ws.service "https://raw.githubusercontent.com/
 wget -O /etc/systemd/system/vmess-grpc.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/vmess-grpc.service"
 
 #enable systemd
+systemctl enable worryfree
+systemctl enable koutahabis
 systemctl enable trojan-tcp
 systemctl enable trojan-ws
 systemctl enable trojan-grpc

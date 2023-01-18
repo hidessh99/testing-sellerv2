@@ -48,8 +48,11 @@ sed -i '/#xray$/a\#### '"$user$sec $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user$sec""'"' /etc/xray/vmess-ws.json
 sed -i '/#xray$/a\#### '"$user$sec $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user$sec""'"' /etc/xray/vmess-grpc.json
-sleep 5 && systemctl restart vmess-ws &
-sleep 5 && systemctl restart vmess-grpc &
+sed -i '/#xray$/a\#### '"$user$sec $exp"'\
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user$sec""'"' /etc/xray/worryfree.json
+sleep 1 && systemctl restart vmess-ws &
+sleep 1 && systemctl restart vmess-grpc &
+sleep 1 && systemctl restart worryfree &
 
 cat>/etc/xray/vmess-${user}ws-tls.json<<EOF
       {
