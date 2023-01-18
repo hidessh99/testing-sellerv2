@@ -168,13 +168,20 @@ wget -O /etc/xray/vless-grpc.json "https://raw.githubusercontent.com/hidessh99/t
 #Xray Vmess GRPC
 wget -O /etc/xray/vmess-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vmess-grpc.json"
 
+#xray WorryFree
+wget -O /etc/xray/worryfree.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vmess-ws-orbit.json"
+#xray KoutaHabis
+wget -O /etc/xray/koutahabis.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vmess-ws-orbit1.json"
 
-
+#servive worryfree
+wget -O /etc/systemd/system/worryfree.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/worryfree.service"
+#service koutahabis
+wget -O /etc/systemd/system/koutahabis.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/koutahabis.service"
 
 #Service NTLS Port 80
 wget -O /etc/systemd/system/ntls.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/ntls.service"
 #Service NTLS Port 55
-wget -O /etc/systemd/system/ntls-55.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/ntls.service"
+wget -O /etc/systemd/system/ntls-55.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/ntls-55.service"
 #Service  Trojan Port 443
 wget -O /etc/systemd/system/trojan-tcp.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/trojan-tcp.service"
 
