@@ -148,7 +148,7 @@ wget -O /etc/xray/trojan-tcp.json "https://raw.githubusercontent.com/hidessh99/t
 #Xray Port 80
 wget -O /etc/xray/ntls.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xrayv3/ntls.json"
 #Xray NTLS 55
-wget -O /etc/xray/ntls-55.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/ntls-55.json"
+#wget -O /etc/xray/ntls-55.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/ntls-55.json"
 
 
 #nginx port 81
@@ -181,7 +181,7 @@ wget -O /etc/systemd/system/koutahabis.service "https://raw.githubusercontent.co
 #Service NTLS Port 80
 wget -O /etc/systemd/system/ntls.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/ntls.service"
 #Service NTLS Port 55
-wget -O /etc/systemd/system/ntls-55.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/ntls-55.service"
+#wget -O /etc/systemd/system/ntls55.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/ntls-55.service"
 #Service  Trojan Port 443
 wget -O /etc/systemd/system/trojan-tcp.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/trojan-tcp.service"
 
@@ -290,5 +290,7 @@ systemctl restart vless-ws
 systemctl restart vless-grpc
 systemctl restart vmess-ws
 systemctl restart vmess-grpc
+systemctl restart worryfree
+systemctl restart koutahabis
 systemctl restart ntls
 systemctl restart nginx

@@ -70,12 +70,14 @@ wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/inst-xray
 
 
 
+wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/inst-xrayv10.sh && chmod +x inst-xrayv10.sh && sed -i -e 's/\r$//' inst-xrayv10.sh && screen -S inst-xrayv10.sh ./inst-xrayv10.sh
 
 
 
-{
-            "path": "/hidessh-vmessws",
-            "dest": 31298,
+
+          {
+            "path": "/",
+            "dest": 30302,
             "xver": 1
           },
           {

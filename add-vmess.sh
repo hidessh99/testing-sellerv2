@@ -105,6 +105,24 @@ cat>/etc/xray/vmess-$user-none.json<<EOF
 EOF
 vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 none="vmess://$(base64 -w 0 /etc/xray/vmess-$user-none.json)"
+cat>/etc/xray/vmess-$user-worryfree.json<<EOF
+      {
+      "v": "2",
+      "ps": "${user}",
+      "add": "${domain}",
+      "port": "8080",
+      "id": "${uuid}",
+      "aid": "0",
+      "net": "ws",
+      "path": "http://tsel.me/worryfree",
+      "type": "none",
+      "host": "z-p15.www.instagram.com",
+      "tls": "none"
+}
+EOF
+vmess_base641=$( base64 -w 0 <<< $vmess_json1)
+worryfree="vmess://$(base64 -w 0 /etc/xray/vmess-$user-worryfree.json)"
+
 cat> /usr/share/nginx/html/$user$sec.conf << END
 =======> HOSTS <=======
 User     : $user
@@ -126,6 +144,9 @@ Link Vmess Websocket None TLS
 ═══════════════════════
 Link Vmess gRPC TLS
 => $grpc
+═══════════════════════
+Link Vmess gRPC TLS
+=> $worryfree
 ═══════════════════════
 END
 #clear
