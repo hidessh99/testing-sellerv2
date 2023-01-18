@@ -5,7 +5,7 @@
   },
   "inbounds": [
     {
-      "port": 69,
+      "port": 55,
       "protocol": "trojan",
       "tag": "TROJANTCP",
       "settings": {
