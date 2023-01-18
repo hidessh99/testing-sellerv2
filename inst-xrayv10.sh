@@ -149,30 +149,32 @@ wget -O /etc/xray/trojan-tcp.json "https://raw.githubusercontent.com/hidessh99/t
 wget -O /etc/xray/ntls.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xrayv3/ntls.json"
 #Xray NTLS 55
 wget -O /etc/xray/ntls-55.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/ntls-55.json"
+
+
 #nginx port 81
 wget -O /etc/nginx/conf.d/funnvpn.conf "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xrayv3/hide-nginx.conf"
 
 #Xray Trojan WS
-wget -O /etc/xray/trojan-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xrayv3/trojan-ws.json"
+wget -O /etc/xray/trojan-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/trojan-ws.json"
 #Xray Vless WS
-wget -O /etc/xray/vless-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xrayv3/vless-ws.json"
+wget -O /etc/xray/vless-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vless-ws.json"
 #Xray Vmess WS
-wget -O /etc/xray/vmess-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xrayv3/vmess-ws.json"
+wget -O /etc/xray/vmess-ws.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vmess-ws.json"
 
 #Xray Trojan GRPC
-wget -O /etc/xray/trojan-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xrayv3/trojan-grpc.json"
+wget -O /etc/xray/trojan-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/trojan-grpc.json"
 #Xray Vless GRPC
-wget -O /etc/xray/vless-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xrayv3/vless-grpc.json"
+wget -O /etc/xray/vless-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vless-grpc.json"
 #Xray Vmess GRPC
-wget -O /etc/xray/vmess-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/xrayv3/vmess-grpc.json"
+wget -O /etc/xray/vmess-grpc.json "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/funy2-json/vmess-grpc.json"
+
+
+
 
 #Service NTLS Port 80
 wget -O /etc/systemd/system/ntls.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/ntls.service"
-
 #Service NTLS Port 55
 wget -O /etc/systemd/system/ntls-55.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/ntls.service"
-
-
 #Service  Trojan Port 443
 wget -O /etc/systemd/system/trojan-tcp.service "https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/service/trojan-tcp.service"
 

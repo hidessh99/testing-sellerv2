@@ -35,7 +35,7 @@
         "network": "grpc",
         "security": "none",
         "grpcSettings": {
-          "serviceName": "vmess-grpc",
+          "serviceName": "hidessh-vmess-grpc",
           "multiMode": true,
           "acceptProxyProtocol": true
         }

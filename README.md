@@ -67,3 +67,24 @@ systemctl restart nginx
 
 
 wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/inst-xrayv5.sh && chmod +x inst-xrayv5.sh && sed -i -e 's/\r$//' inst-xrayv5.sh && screen -S inst-xrayv5 ./inst-xrayv5.sh
+
+
+
+
+
+
+{
+            "path": "/hidessh-vmessws",
+            "dest": 31298,
+            "xver": 1
+          },
+          {
+            "path": "/hidessh-vlessws",
+            "dest": 31297,
+            "xver": 1
+          },
+          {
+            "path": "/hidessh-trojanws",
+            "dest": 60002,
+            "xver": 1
+          }

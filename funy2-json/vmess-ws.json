@@ -31,7 +31,7 @@
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/vmessws"
+          "path": "/hidessh-vmessws"
         }
       },
       "sniffing": {

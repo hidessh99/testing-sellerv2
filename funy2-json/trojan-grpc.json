@@ -41,7 +41,7 @@
         "network": "grpc",
         "security": "none",
         "grpcSettings": {
-          "serviceName": "trojan-grpc",
+          "serviceName": "hidessh-trojan-grpc",
           "multiMode": true,
           "acceptProxyProtocol": true
         }

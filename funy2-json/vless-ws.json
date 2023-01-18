@@ -32,7 +32,7 @@
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/vlessws"
+          "path": "/hidessh-vlessws"
         }
       },
       "sniffing": {
