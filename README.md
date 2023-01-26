@@ -90,3 +90,10 @@ wget https://raw.githubusercontent.com/hidessh99/testing-sellerv2/main/inst-xray
             "dest": 60002,
             "xver": 1
           }
+
+
+
+
+ Vmess 
+
+ /vmess         

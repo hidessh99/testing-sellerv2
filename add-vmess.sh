@@ -145,7 +145,7 @@ Link Vmess Websocket None TLS
 Link Vmess gRPC TLS
 => $grpc
 ═══════════════════════
-Link Vmess gRPC TLS
+Link Vmess WorryFree
 => $worryfree
 ═══════════════════════
 END
